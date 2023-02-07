@@ -23,7 +23,7 @@ module.exports = {
         return {};
       });
 
-    if (!apiResponse.dtz) {
+    if (!apiResponse.moves) {
       return interaction.reply(
         `Sorry, tablebase information is not available for this position.`
       );
