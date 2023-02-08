@@ -14,7 +14,7 @@ module.exports = {
     .setType(ApplicationCommandType.User),
 
   async execute(interaction) {
-    const { id } = interaction.targetMember;
+    const { id } = interaction.targetUser;
     const profile = await profileModel.findOne({ userId: id });
 
     let chesscomData;
@@ -109,8 +109,8 @@ module.exports = {
     }
 
     const whoamiEmbed = new EmbedBuilder()
-      .setTitle(`${interaction.targetMember.username}'s profile`)
-      .setThumbnail(interaction.targetMember.avatarURL())
+      .setTitle(`${interaction.targetUser.username}'s profile`)
+      .setThumbnail(interaction.targetUser.avatarURL())
       .addFields(
         {
           name: "Chess.com",
@@ -130,16 +130,14 @@ module.exports = {
         .setURL(
           `https://www.chess.com/play/online/new?opponent=${profile.chesscomUsername}`
         )
-        .setLabel(
-          `Challenge ${interaction.targetMember.username} on Chess.com!`
-        )
+        .setLabel(`Challenge ${interaction.targetUser} on Chess.com!`)
         .setStyle(ButtonStyle.Link)
     );
 
     const buttonRow2 = new ActionRowBuilder().addComponents(
       new ButtonBuilder()
         .setURL(`https://lichess.org/?user=${profile.lichessUsername}#friend`)
-        .setLabel(`Challenge ${interaction.targetMember.username} on Lichess!`)
+        .setLabel(`Challenge ${interaction.targetUser} on Lichess!`)
         .setStyle(ButtonStyle.Link)
     );
 
