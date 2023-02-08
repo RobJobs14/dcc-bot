@@ -130,14 +130,14 @@ module.exports = {
         .setURL(
           `https://www.chess.com/play/online/new?opponent=${profile.chesscomUsername}`
         )
-        .setLabel(`Challenge ${interaction.targetUser} on Chess.com!`)
+        .setLabel(`Challenge ${interaction.targetUser.username} on Chess.com!`)
         .setStyle(ButtonStyle.Link)
     );
 
     const buttonRow2 = new ActionRowBuilder().addComponents(
       new ButtonBuilder()
         .setURL(`https://lichess.org/?user=${profile.lichessUsername}#friend`)
-        .setLabel(`Challenge ${interaction.targetUser} on Lichess!`)
+        .setLabel(`Challenge ${interaction.targetUser.username} on Lichess!`)
         .setStyle(ButtonStyle.Link)
     );
 
