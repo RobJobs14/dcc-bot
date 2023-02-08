@@ -109,7 +109,7 @@ module.exports = {
     }
 
     const whoamiEmbed = new EmbedBuilder()
-      .setTitle(`${interaction.targetUser.username}'s profile`)
+      .setTitle(`${interaction.targetUser.username}'s profiles`)
       .setThumbnail(interaction.targetUser.avatarURL())
       .addFields(
         {
