@@ -10,7 +10,7 @@ const profileModel = require("../models/profileSchema");
 
 module.exports = {
   data: new ContextMenuCommandBuilder()
-    .setName("Chess Profiles")
+    .setName("View Chess Profiles")
     .setType(ApplicationCommandType.User),
 
   async execute(interaction) {
