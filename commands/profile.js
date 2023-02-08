@@ -141,7 +141,8 @@ module.exports = {
         .setStyle(ButtonStyle.Link)
     );
 
-    interaction.reply({
+    channel.send({
+      ephemeral: true,
       embeds: [whoamiEmbed],
       components: [buttonRow1, buttonRow2],
     });
