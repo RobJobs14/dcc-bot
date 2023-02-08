@@ -4,7 +4,11 @@ const profileModel = require("../models/profileSchema");
 module.exports = {
   name: Events.InteractionCreate,
   async execute(interaction) {
-    if (!interaction.isChatInputCommand()) return;
+    if (
+      !interaction.isChatInputCommand() &&
+      !interaction.isUserContextMenuCommand()
+    )
+      return;
 
     //get user db information and pass to command
     let profileData;
