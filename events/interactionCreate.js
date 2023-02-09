@@ -4,34 +4,39 @@ const profileModel = require("../models/profileSchema");
 module.exports = {
   name: Events.InteractionCreate,
   async execute(interaction) {
-    if (
-      !interaction.isChatInputCommand() &&
-      !interaction.isUserContextMenuCommand()
-    )
-      return;
-
-    //get user db information and pass to command
     let profileData;
     let targetProfileData;
-    try {
-      profileData = await profileModel.findOne({ userId: interaction.user.Id });
-      if (!profileData) {
-        profileData = await profileModel.create({
-          userId: interaction.user.id,
-          serverId: interaction.guild.id,
+
+    if (interaction.isChatInputCommand()) {
+      try {
+        profileData = await profileModel.findOne({
+          userId: interaction.user.Id,
         });
+        if (!profileData) {
+          profileData = await profileModel.create({
+            userId: interaction.user.id,
+            serverId: interaction.guild.id,
+          });
+        }
+      } catch (err) {
+        console.log(err);
       }
-      targetProfileData = await profileModel.findOne({
-        userId: interaction.targetId
-      });
-      if (!targetProfileData) {
-        targetProfileData = await profileModel.create({
+    } else if (interaction.isUserContextMenuCommand()) {
+      try {
+        targetProfileData = await profileModel.findOne({
           userId: interaction.targetId,
-          serverId: interaction.guild.id,
         });
+        if (!targetProfileData) {
+          targetProfileData = await profileModel.create({
+            userId: interaction.targetId,
+            serverId: interaction.guild.id,
+          });
+        }
+      } catch (err) {
+        console.log(err);
       }
-    } catch (err) {
-      console.log(err);
+    } else {
+      return;
     }
 
     const command = interaction.client.commands.get(interaction.commandName);
@@ -44,7 +49,11 @@ module.exports = {
     }
 
     try {
-      await command.execute(interaction, profileData);
+      if (interaction.isChatInputCommand()) {
+        await command.execute(interaction, profileData);
+      } else if (interaction.isUserContextMenuCommand()) {
+        await command.execute(interaction, targetProfileData);
+      }
     } catch (error) {
       console.error(`Error executing ${interaction.commandName}`);
       console.error(error);
