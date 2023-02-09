@@ -83,7 +83,6 @@ module.exports = {
     let lichessBulletRating;
     let lichessBlitzRating;
     let lichessRapidRating;
-
     if (profile.lichessUsername) {
       try {
         const lichessResponse = await fetch(
