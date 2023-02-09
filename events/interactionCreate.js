@@ -22,11 +22,11 @@ module.exports = {
         });
       }
       targetProfileData = await profileModel.findOne({
-        userId: interaction.targetUser.Id,
+        userId: interaction.targetId,
       });
       if (!targetProfileData) {
         targetProfileData = await profileModel.create({
-          userId: interaction.targetUser.id,
+          userId: interaction.targetId,
           serverId: interaction.guild.id,
         });
       }
