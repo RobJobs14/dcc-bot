@@ -23,7 +23,12 @@ module.exports = {
     let chesscomBlitzRating;
     let chesscomRapidRating;
 
-    if (profile && profile.chesscomUsername) {
+    if (profile.chesscomUsername === "null") {
+      chesscomUsername = "No username registered";
+      chesscomBulletRating = "N/A";
+      chesscomBlitzRating = "N/A";
+      chesscomRapidRating = "N/A";
+    } else if (profile.chesscomUsername) {
       try {
         const chesscomResponse = await fetch(
           `https://api.chess.com/pub/player/${encodeURI(
@@ -83,7 +88,13 @@ module.exports = {
     let lichessBulletRating;
     let lichessBlitzRating;
     let lichessRapidRating;
-    if (profile && profile.lichessUsername) {
+
+    if (profile.lichessUsername === "null") {
+      lichessUsername = "No username registered";
+      lichessBulletRating = "N/A";
+      lichessBlitzRating = "N/A";
+      lichessRapidRating = "N/A";
+    } else if (profile.lichessUsername) {
       try {
         const lichessResponse = await fetch(
           `https://lichess.org/api/user/${profile.lichessUsername}`
