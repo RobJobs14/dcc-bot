@@ -1,7 +1,7 @@
 const { Events } = require("discord.js");
 const ChessWebAPI = require("chess-web-api");
 
-const { LICHESS_TOKEN: token } = process.env;
+const { LICHESS_TOKEN: litoken } = process.env;
 
 module.exports = {
   name: Events.MessageCreate,
@@ -17,7 +17,7 @@ module.exports = {
           method: "POST",
           body: gameID,
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${litoken}`,
             "Content-Type": "application/x-www-form-urlencoded",
           },
         })
