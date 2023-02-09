@@ -12,11 +12,21 @@ module.exports = {
 
     //get user db information and pass to command
     let profileData;
+    let targetProfileData;
     try {
       profileData = await profileModel.findOne({ userId: interaction.user.Id });
       if (!profileData) {
         profileData = await profileModel.create({
           userId: interaction.user.id,
+          serverId: interaction.guild.id,
+        });
+      }
+      targetProfileData = await profileModel.findOne({
+        userId: interaction.targetUser.Id,
+      });
+      if (!targetProfileData) {
+        targetProfileData = await profileModel.create({
+          userId: interaction.targetUser.id,
           serverId: interaction.guild.id,
         });
       }
