@@ -23,7 +23,7 @@ module.exports = {
     let chesscomBlitzRating;
     let chesscomRapidRating;
 
-    if (!profile || !profile.chesscomUsername) {
+    if (!profile.userId) {
       chesscomUsername = "No username registered";
       chesscomBulletRating = "N/A";
       chesscomBlitzRating = "N/A";
@@ -89,7 +89,7 @@ module.exports = {
     let lichessBlitzRating;
     let lichessRapidRating;
 
-    if (!profile || !profile.lichessUsername) {
+    if (!profile.userId) {
       lichessUsername = "No username registered";
       lichessBulletRating = "N/A";
       lichessBlitzRating = "N/A";
