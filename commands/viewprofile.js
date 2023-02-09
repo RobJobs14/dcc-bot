@@ -23,7 +23,7 @@ module.exports = {
     let chesscomBlitzRating;
     let chesscomRapidRating;
 
-    if (profile.chesscomUsername) {
+    if (profile && profile.chesscomUsername) {
       try {
         const chesscomResponse = await fetch(
           `https://api.chess.com/pub/player/${encodeURI(
