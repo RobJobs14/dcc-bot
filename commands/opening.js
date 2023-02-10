@@ -31,13 +31,10 @@ module.exports = {
 
     // Read the tsv files in the folder and store their content in an array
     const openings = fs
-      .readdirSync(path.join("/Users/zexixiong/bot-test/openings"))
+      .readdirSync(path.join("/home/zexi/dcc-bot/openings"))
       .filter((file) => file.endsWith(".tsv"))
       .map((file) =>
-        fs.readFileSync(
-          path.join("/Users/zexixiong/bot-test/openings", file),
-          "utf-8"
-        )
+        fs.readFileSync(path.join("/home/zexi/dcc-bot/openings", file), "utf-8")
       );
 
     // Concatenate all tsv file contents into a single string
