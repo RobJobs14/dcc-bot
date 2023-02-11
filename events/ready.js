@@ -5,7 +5,7 @@ module.exports = {
   once: true,
   execute(client) {
     console.log(`Ready! Logged in as ${client.user.tag}`);
-    client.user.setActivity("chess event on Feb 17th 2PM at 2C.17", {
+    client.user.setActivity("chess event on Feb 17th 2PM at 2C.03", {
       type: ActivityType.Playing,
     });
   },
