@@ -52,8 +52,8 @@ module.exports = {
       if (
         (queryType === "eco" && eco === queryValue) ||
         (queryType === "name" &&
-          name.toLowerCase().replace(/[':,]/g, "") ===
-            queryValue.toLowerCase().replace(/[':,]/g, ""))
+          name.toLowerCase().replace(/[':,-]/g, "") ===
+            queryValue.toLowerCase().replace(/[':,-]/g, ""))
       ) {
         pgn = pgnValue;
         ecoValue = eco;
