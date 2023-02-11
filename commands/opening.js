@@ -85,7 +85,7 @@ module.exports = {
           );
         });
     } else {
-      interaction.reply("No matching opening was found.");
+      interaction.reply({ content: "No matching opening was found.", ephemeral: true });
     }
   },
 };
