@@ -24,9 +24,10 @@ module.exports = {
       });
 
     if (!apiResponse.moves) {
-      return interaction.reply(
-        `Sorry, tablebase information is not available for this position.`
-      );
+      return interaction.reply({
+        content: `Sorry, tablebase information is not available for this position.`,
+        ephemeral: true,
+      });
     }
     const imageURL = `http://lichess1.org/export/fen.gif?fen=${encodeURI(fen)}`;
     const tablebaseEmbed = new EmbedBuilder()
