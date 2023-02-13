@@ -16,7 +16,6 @@ module.exports = {
     ),
 
   async execute(interaction) {
-    const queryType = interaction.options.getString("query");
     const queryValue = interaction.options.getString("term");
 
     // Read the tsv files in the folder and store their content in an array
@@ -40,7 +39,7 @@ module.exports = {
     for (const line of lines) {
       const [eco, name, pgnValue] = line.split("\t");
       if (
-        eco === queryValue ||
+        eco.toLowerCase() === queryValue.toLowerCase() ||
         name.toLowerCase().replace(/[':,-]/g, "") ===
           queryValue.toLowerCase().replace(/[':,-]/g, "")
       ) {
