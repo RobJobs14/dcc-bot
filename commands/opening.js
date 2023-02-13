@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require("discord.js");
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 const fs = require("node:fs");
 const path = require("node:path");
 
@@ -36,27 +36,30 @@ module.exports = {
     let pgn = null;
     let ecoValue = null;
     let nameValue = null;
+    let pgnOutput = null;
     for (const line of lines) {
       const [eco, name, pgnValue] = line.split("\t");
       if (
-        eco.toLowerCase() === queryValue.toLowerCase() ||
+        eco === queryValue ||
         name.toLowerCase().replace(/[':,-]/g, "") ===
           queryValue.toLowerCase().replace(/[':,-]/g, "")
       ) {
         pgn = pgnValue;
         ecoValue = eco;
         nameValue = name;
+        pgnOutput = pgnValue;
         break;
       }
     }
 
+    const { getStats } = await import("../stats.mjs");
+
     // Reply to the user with the PGN if it was found, otherwise reply with an error message
     if (pgn) {
+      const [data1, data2] = await getStats(pgn);
+
       const params = new URLSearchParams();
-      params.append(
-        "pgn",
-        `[White "${pgn}"][Black "${ecoValue} ${nameValue}"] ${pgn}`
-      );
+      params.append("pgn", `[White "${data2}"] [Black "${data1}"] ${pgn}`);
       const response = await fetch("https://lichess.org/api/import", {
         method: "POST",
         body: params,
@@ -68,15 +71,16 @@ module.exports = {
         .then((response) => response.json())
         .then((pgn) => {
           const id = pgn.id;
-          interaction.reply(
-            `https://lichess1.org/game/export/gif/${id}.gif?theme=brown&piece=cburnett`
-          );
+          const imageURL = `https://lichess1.org/game/export/gif/${id}.gif?theme=brown&piece=cburnett`;
+          const openingEmbed = new EmbedBuilder()
+            .setColor(0x0099ff)
+            .setTitle(`${ecoValue} ${nameValue}`)
+            .setDescription(`${pgnOutput}`)
+            .setImage(imageURL);
+          interaction.reply({ embeds: [openingEmbed] });
         });
     } else {
-      interaction.reply({
-        content: "No matching opening was found.",
-        ephemeral: true,
-      });
+      interaction.reply("No matching opening was found.");
     }
   },
 };
