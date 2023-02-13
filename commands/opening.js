@@ -34,20 +34,20 @@ module.exports = {
 
     // Iterate over the lines and find the one that matches the query value
     let pgn = null;
+    let pgnOutput = null;
     let ecoValue = null;
     let nameValue = null;
-    let pgnOutput = null;
     for (const line of lines) {
       const [eco, name, pgnValue] = line.split("\t");
       if (
-        eco === queryValue ||
+        eco.toLowerCase() === queryValue.toLowerCase() ||
         name.toLowerCase().replace(/[':,-]/g, "") ===
           queryValue.toLowerCase().replace(/[':,-]/g, "")
       ) {
         pgn = pgnValue;
+        pgnOutput = pgnValue;
         ecoValue = eco;
         nameValue = name;
-        pgnOutput = pgnValue;
         break;
       }
     }
