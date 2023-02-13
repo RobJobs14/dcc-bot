@@ -24,11 +24,12 @@ module.exports = {
           });
 
         if (!apiResponse.pvs || !apiResponse.pvs.length) {
-          return interaction.reply(
-            `Sorry, cloud analysis is not available for this position. You may visit [lichess](https://lichess.org/analysis?fen=${encodeURI(
+          return interaction.reply({
+            content: `Sorry, cloud analysis is not available for this position. You may visit [lichess](https://lichess.org/analysis?fen=${encodeURI(
               fen
-            )}) instead for local evaluation.`
-          );
+            )}) instead for local evaluation.`,
+            ephemeral: true,
+          });
         }
 
         const imageURL = `http://lichess1.org/export/fen.gif?fen=${encodeURI(
