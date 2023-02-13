@@ -10,16 +10,6 @@ module.exports = {
     .setDescription("Get a GIF of an opening")
     .addStringOption((option) =>
       option
-        .setName("query")
-        .setDescription("Query type")
-        .setRequired(true)
-        .addChoices(
-          { name: "opening name", value: "name" },
-          { name: "ECO code", value: "eco" }
-        )
-    )
-    .addStringOption((option) =>
-      option
         .setName("term")
         .setDescription("Opening name or ECO code")
         .setRequired(true)
@@ -50,10 +40,9 @@ module.exports = {
     for (const line of lines) {
       const [eco, name, pgnValue] = line.split("\t");
       if (
-        (queryType === "eco" && eco === queryValue) ||
-        (queryType === "name" &&
-          name.toLowerCase().replace(/[':,-]/g, "") ===
-            queryValue.toLowerCase().replace(/[':,-]/g, ""))
+        eco === queryValue ||
+        name.toLowerCase().replace(/[':,-]/g, "") ===
+          queryValue.toLowerCase().replace(/[':,-]/g, "")
       ) {
         pgn = pgnValue;
         ecoValue = eco;
@@ -85,7 +74,10 @@ module.exports = {
           );
         });
     } else {
-      interaction.reply({ content: "No matching opening was found.", ephemeral: true });
+      interaction.reply({
+        content: "No matching opening was found.",
+        ephemeral: true,
+      });
     }
   },
 };
