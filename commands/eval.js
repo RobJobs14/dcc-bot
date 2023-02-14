@@ -40,11 +40,15 @@ module.exports = {
         const pgnMoves = await convertUCIToPGN(fen, uciMoves);
 
         const lines = apiResponse.pvs.map((pv) => {
-          const evalInCentipawns = pv.cp;
-          const evaluation = (evalInCentipawns / 100).toFixed(2);
-          return `**${evaluation > 0 ? "+" : ""}${evaluation}**: ${
-            pgnMoves[apiResponse.pvs.indexOf(pv)]
-          }`;
+          if (pv.mate) {
+            return `**#${pv.mate}**: ${pgnMoves[apiResponse.pvs.indexOf(pv)]}`;
+          } else {
+            const evalInCentipawns = pv.cp;
+            const evaluation = (evalInCentipawns / 100).toFixed(2);
+            return `**${evaluation > 0 ? "+" : ""}${evaluation}**: ${
+              pgnMoves[apiResponse.pvs.indexOf(pv)]
+            }`;
+          }
         });
 
         const evalEmbed = new EmbedBuilder()
