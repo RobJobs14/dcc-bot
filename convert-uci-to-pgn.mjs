@@ -20,9 +20,13 @@ export async function convertUCIToPGN(fen, uciMoves) {
         chess.move(move);
       }
     }
-    pgnMoves.push(
-      chess.pgn({ newline_char: "\n" }).split("\n").slice(2).join("")
-    );
+    let pgnMove = chess
+      .pgn({ newline_char: "\n" })
+      .split("\n")
+      .slice(2)
+      .join("");
+    pgnMove = pgnMove.replace(/(\.\s)\.\.\.\s/g, "... ");
+    pgnMoves.push(pgnMove);
   }
 
   return pgnMoves;
