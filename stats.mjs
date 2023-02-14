@@ -29,20 +29,24 @@ export async function getStats(pgn) {
   const total1 = data1.white + data1.draws + data1.black;
   const total2 = data2.white + data2.draws + data2.black;
 
-  const data1String = `${total1} Masters games: ${(
-    (data1.white / total1) *
-    100
-  ).toFixed(2)}% / ${((data1.draws / total1) * 100).toFixed(2)}% / ${(
-    (data1.black / total1) *
-    100
-  ).toFixed(2)}%`;
-  const data2String = `${total2} Lichess games: ${(
-    (data2.white / total2) *
-    100
-  ).toFixed(2)}% / ${((data2.draws / total2) * 100).toFixed(2)}% / ${(
-    (data2.black / total2) *
-    100
-  ).toFixed(2)}%`;
+  const data1WhitePercentage = (data1.white / total1) * 100 || 0;
+  const data1DrawsPercentage = (data1.draws / total1) * 100 || 0;
+  const data1BlackPercentage = (data1.black / total1) * 100 || 0;
+
+  const data2WhitePercentage = (data2.white / total2) * 100 || 0;
+  const data2DrawsPercentage = (data2.draws / total2) * 100 || 0;
+  const data2BlackPercentage = (data2.black / total2) * 100 || 0;
+
+  const data1String = `${total1} Masters games: ${data1WhitePercentage.toFixed(
+    2
+  )}% / ${data1DrawsPercentage.toFixed(2)}% / ${data1BlackPercentage.toFixed(
+    2
+  )}%`;
+  const data2String = `${total2} Lichess games: ${data2WhitePercentage.toFixed(
+    2
+  )}% / ${data2DrawsPercentage.toFixed(2)}% / ${data2BlackPercentage.toFixed(
+    2
+  )}%`;
 
   return [data1String, data2String];
 }
