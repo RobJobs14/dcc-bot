@@ -203,7 +203,9 @@ module.exports = {
 
       // Create a filter for the message collector
       const filter = (m) =>
-        !isNaN(m.content) && Number(m.content) <= matchingOpenings.length;
+        !m.author.bot &&
+        !isNaN(m.content) &&
+        Number(m.content) <= matchingOpenings.length;
 
       // Create the message collector
       const collector = interaction.channel.createMessageCollector({
