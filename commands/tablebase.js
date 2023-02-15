@@ -19,6 +19,7 @@ module.exports = {
     )
       .then((res) => res.json())
       .catch((err) => {
+        console.error(err);
         return {};
       });
 

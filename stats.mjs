@@ -15,7 +15,9 @@ export async function getStats(pgn) {
       const data = await res.json();
       const { white, draws, black } = data;
       return { white, draws, black };
-    } catch (err) {}
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   const data1 = await fetchData(apiUrl1);

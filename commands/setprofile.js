@@ -38,6 +38,7 @@ module.exports = {
         { upsert: true }
       );
     } catch (err) {
+      console.log(err);
       return interaction.reply(
         "There was an error while updating your profile."
       );
