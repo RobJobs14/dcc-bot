@@ -6,7 +6,7 @@ module.exports = {
     .setDescription("Get a list of chess notations"),
   async execute(interaction) {
     const notationEmbed = new EmbedBuilder()
-      .setColor("#ffc100")
+      .setColor("0xdbc300")
       .setTitle("List of Chess Notations")
       .addFields(
         { name: "!", value: "Good move", inline: true },

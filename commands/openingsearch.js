@@ -74,7 +74,7 @@ module.exports = {
       let end = Math.min(start + FIELDS_PER_PAGE, numFields);
 
       // Create the embed and buttons for the first page
-      const embed = new EmbedBuilder().setColor("#ffc100").addFields(
+      const embed = new EmbedBuilder().setColor("0xdbc300").addFields(
         ...matchingOpenings
           .slice(start, end)
           .map((opening) => [opening, { name: "\n", value: "\n" }])
@@ -237,7 +237,7 @@ module.exports = {
         const imageURL = `https://lichess1.org/game/export/gif/${id}.gif?theme=brown&piece=cburnett`;
 
         const openingEmbed = new EmbedBuilder()
-          .setColor("#ffc100")
+          .setColor("0xdbc300")
           .setTitle(selectedOpening.name)
           .setDescription(selectedOpening.value)
           .setImage(imageURL);

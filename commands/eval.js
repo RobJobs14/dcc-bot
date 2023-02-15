@@ -52,7 +52,7 @@ module.exports = {
         });
 
         const evalEmbed = new EmbedBuilder()
-          .setColor("#ffc100")
+          .setColor("0xdbc300")
           .setTitle(`Cloud Evaluation Depth: ${apiResponse.depth}`)
           .setDescription(lines.join("\n"))
           .setImage(imageURL);

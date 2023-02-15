@@ -108,7 +108,7 @@ module.exports = {
           inline: true,
         }
       )
-      .setColor("#ffc100");
+      .setColor("0xdbc300");
 
     const buttonRow1 = new ActionRowBuilder().addComponents(
       new ButtonBuilder()
