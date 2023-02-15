@@ -251,18 +251,6 @@ module.exports = {
 
         m.reply({ embeds: [openingEmbed] });
       });
-      // Create command filter
-      const commandFilter = (a) => a.content.includes("/openingsearch");
-
-      // Create command collector
-      const commandCollector = interaction.channel.createMessageCollector({
-        commandFilter,
-        time: 300000,
-      });
-
-      commandCollector.on("collect", (a) => {
-        collector.stop();
-      });
     } else {
       interaction.reply("No matching opening was found.");
     }
