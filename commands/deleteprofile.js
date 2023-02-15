@@ -12,7 +12,6 @@ module.exports = {
     try {
       await profileModel.findOneAndDelete({ userId: id });
     } catch (err) {
-      console.log(err);
       return interaction.reply(
         "There was an error while clearing your profile."
       );

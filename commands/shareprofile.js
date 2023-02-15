@@ -49,7 +49,6 @@ module.exports = {
           chesscomRapidRating = "N/A";
         }
       } catch (error) {
-        console.error(error);
         chesscomUsername = "Error retrieving data for Chess.com";
         chesscomBulletRating = "N/A";
         chesscomBlitzRating = "N/A";
@@ -60,21 +59,6 @@ module.exports = {
       chesscomBulletRating = "N/A";
       chesscomBlitzRating = "N/A";
       chesscomRapidRating = "N/A";
-    }
-
-    if (chesscomUsername) {
-      console.log(`Username: ${chesscomUsername}`);
-      console.log(
-        `Bullet rating: ${chesscomBulletRating ? chesscomBulletRating : "N/A"}`
-      );
-      console.log(
-        `Blitz rating: ${chesscomBlitzRating ? chesscomBlitzRating : "N/A"}`
-      );
-      console.log(
-        `Rapid rating: ${chesscomRapidRating ? chesscomRapidRating : "N/A"}`
-      );
-    } else {
-      console.log("No username registered");
     }
 
     let lichessData;
@@ -94,7 +78,6 @@ module.exports = {
         lichessBlitzRating = lichessData.perfs.blitz.rating.toString();
         lichessRapidRating = lichessData.perfs.rapid.rating.toString();
       } catch (error) {
-        console.error(error);
         lichessUsername = "Error retrieving data for Lichess";
         lichessBulletRating = "N/A";
         lichessBlitzRating = "N/A";
