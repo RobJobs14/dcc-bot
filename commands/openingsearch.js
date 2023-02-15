@@ -74,13 +74,18 @@ module.exports = {
       let end = Math.min(start + FIELDS_PER_PAGE, numFields);
 
       // Create the embed and buttons for the first page
-      const embed = new EmbedBuilder().setColor("0xdbc300").addFields(
-        ...matchingOpenings
-          .slice(start, end)
-          .map((opening) => [opening, { name: "\n", value: "\n" }])
-          .flat()
-          .slice(0, -1) // remove the last blank field
-      );
+      const embed = new EmbedBuilder()
+        .setColor("0xdbc300")
+        .addFields(
+          ...matchingOpenings
+            .slice(start, end)
+            .map((opening) => [opening, { name: "\n", value: "\n" }])
+            .flat()
+            .slice(0, -1) // remove the last blank field
+        )
+        .setFooter({
+          text: `Page ${page} of ${numPages}. Type a number to view it!`,
+        });
 
       interaction.client.buttons = new Collection();
 
@@ -240,11 +245,23 @@ module.exports = {
 
         const openingEmbed = new EmbedBuilder()
           .setColor("0xdbc300")
-          .setTitle(selectedOpening.name)
+          .setTitle(selectedOpening.name.substring(3))
           .setDescription(selectedOpening.value)
           .setImage(imageURL);
 
         m.reply({ embeds: [openingEmbed] });
+      });
+      // Create command filter
+      const commandFilter = (a) => a.content.includes("/openingsearch");
+
+      // Create command collector
+      const commandCollector = interaction.channel.createMessageCollector({
+        commandFilter,
+        time: 300000,
+      });
+
+      commandCollector.on("collect", (a) => {
+        collector.stop();
       });
     } else {
       interaction.reply("No matching opening was found.");
