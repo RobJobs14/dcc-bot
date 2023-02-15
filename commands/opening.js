@@ -73,7 +73,7 @@ module.exports = {
           const id = pgn.id;
           const imageURL = `https://lichess1.org/game/export/gif/${id}.gif?theme=brown&piece=cburnett`;
           const openingEmbed = new EmbedBuilder()
-            .setColor(0x0099ff)
+            .setColor("#ffc100")
             .setTitle(`${ecoValue} ${nameValue}`)
             .setDescription(`${pgnOutput}`)
             .setImage(imageURL);

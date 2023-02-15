@@ -31,7 +31,7 @@ module.exports = {
     }
     const imageURL = `http://lichess1.org/export/fen.gif?fen=${encodeURI(fen)}`;
     const tablebaseEmbed = new EmbedBuilder()
-      .setColor(0x0099ff)
+      .setColor("#ffc100")
       .setTitle("7-piece Syzygy Tablebase")
       .setImage(imageURL);
 
