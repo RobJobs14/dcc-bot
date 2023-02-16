@@ -4,7 +4,7 @@ const { LICHESS_TOKEN: litoken } = process.env;
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName("pgn gif")
+    .setName("pgngif")
     .setDescription("Get the GIF of a PGN")
     .addStringOption((option) =>
       option

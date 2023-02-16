@@ -9,7 +9,7 @@ const profileModel = require("../models/profileSchema");
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName("share profile")
+    .setName("shareprofile")
     .setDescription("Share your chess.com and lichess profiles"),
 
   async execute(interaction) {

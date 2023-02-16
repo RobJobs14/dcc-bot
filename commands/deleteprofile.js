@@ -3,7 +3,7 @@ const profileModel = require("../models/profileSchema");
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName("delete profile")
+    .setName("deleteprofile")
     .setDescription("Delete your usernames from the server database"),
 
   async execute(interaction) {
