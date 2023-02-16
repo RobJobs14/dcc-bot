@@ -177,18 +177,22 @@ module.exports = {
         }
 
         // Update the embed and buttons
-        embed.spliceFields(
-          0,
-          numFields,
-          ...matchingOpenings
-            .slice(start, end)
-            .map((opening) => [
-              opening,
-              { name: "\n", value: "\n", inline: false },
-            ])
-            .flat()
-            .slice(0, -1)
-        );
+        embed
+          .spliceFields(
+            0,
+            numFields,
+            ...matchingOpenings
+              .slice(start, end)
+              .map((opening) => [
+                opening,
+                { name: "\n", value: "\n", inline: false },
+              ])
+              .flat()
+              .slice(0, -1)
+          )
+          .setFooter({
+            text: `Page ${page} of ${numPages}. Type a number to view it!`,
+          });
 
         row.components[0].setDisabled(page === 1);
         row.components[1].setDisabled(page === 1);
