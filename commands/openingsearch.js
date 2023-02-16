@@ -11,6 +11,7 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 const FIELDS_PER_PAGE = 10;
+const collectors = new Map();
 
 const { LICHESS_TOKEN: litoken } = process.env;
 
@@ -26,6 +27,10 @@ module.exports = {
     ),
 
   async execute(interaction) {
+    for (const [channelId, collector] of collectors) {
+      collector.stop();
+      collectors.delete(channelId);
+    }
     const queryValue = interaction.options.getString("query");
 
     // Read the tsv files in the folder and store their content in an array
@@ -213,12 +218,13 @@ module.exports = {
         Number(m.content) <= matchingOpenings.length;
 
       // Create the message collector
-      const collector = interaction.channel.createMessageCollector({
+      const indexCollector = interaction.channel.createMessageCollector({
         filter,
         time: 300000,
       });
+      collectors.set(interaction.channel.id, indexCollector);
 
-      collector.on("collect", async (m) => {
+      indexCollector.on("collect", async (m) => {
         const selected = Number(m.content) - 1;
         const selectedOpening = matchingOpenings[selected];
 
