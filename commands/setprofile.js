@@ -3,7 +3,7 @@ const profileModel = require("../models/profileSchema");
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName("setprofile")
+    .setName("set profile")
     .setDescription("Set your chess.com or lichess profile")
     .addStringOption((option) =>
       option
