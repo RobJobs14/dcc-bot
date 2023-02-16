@@ -49,11 +49,10 @@ module.exports = {
       .then((response) => response.json())
       .then((pgn) => {
         const id = pgn.id;
-        const imageURL = `https://lichess1.org/game/export/gif/${id}.gif?theme=brown&piece=cburnett`;
-        const pgnEmbed = new EmbedBuilder()
-          .setColor("0xdbc300")
-          .setImage(imageURL);
-        interaction.reply({ embeds: [pgnEmbed] });
+
+        interaction.reply(
+          `https://lichess1.org/game/export/gif/${id}.gif?theme=brown&piece=cburnett`
+        );
       });
   },
 };
