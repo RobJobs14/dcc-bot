@@ -10,6 +10,7 @@ const profileModel = require("../models/profileSchema");
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("profile")
+    .setDescription("Profile commands")
     .addSubcommand((subcommand) =>
       subcommand
         .setName("set")
