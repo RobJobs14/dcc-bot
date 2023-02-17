@@ -22,18 +22,6 @@ module.exports = {
       subcommand
         .setName("hint")
         .setDescription("Get a hint for the current weekly chess challenge")
-    )
-    .addSubcommand((subcommand) =>
-      subcommand
-        .setName("update")
-        .setDescription("Update the hint for the weekly challenge")
-        .addStringOption((option) =>
-          option
-            .setName("answer")
-            .setDescription("Your answer")
-            .setRequired(true)
-        )
-        .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers)
     ),
 
   async execute(interaction) {
@@ -57,31 +45,10 @@ module.exports = {
       await dedicatedChannel.send(`${author}: ${answer}`);
       await interaction.reply({ content: "Answer Saved!", ephemeral: true });
     } else if (subcommand === "hint") {
-      // If there is no current hint set, reply with a message saying so.
-      if (!currentHint) {
-        await interaction.reply({
-          content: "There is currently no hint available.",
-          ephemeral: true,
-        });
-      } else {
-        // Otherwise, reply with the current hint.
-        await interaction.reply({
-          content: `${currentHint}`,
-          ephemeral: true,
-        });
-      }
-    } else if (subcommand === "update") {
-      // Get the new hint from the options.
-      const newHint = interaction.options.getString("hint");
-
-      // Update the current hint to the new hint.
-      currentHint = newHint;
-
-      // Save the new hint to the environment variable.
-      process.env.CURRENT_HINT = newHint;
-
-      // Reply to the user to confirm the hint has been updated.
-      await interaction.reply({ content: "Hint updated.", ephemeral: true });
+      await interaction.reply({
+        content: `Hint: White's pawn on c7 might seem dead lost, but it has yet to show his full strength! As per the previous weekly challenge, a great way to defend against threats is to create an even stronger one. Imagine if it was Black's turn to play: he would definitely capture the pawn with ... Rxc7. Are there any interesting ideas that could possibly cause a problem to that specific position? What if Black doesn't capture? If you could make multiple moves, what could reliably defend the c7 pawn?\nTactical Motifs: Fork, Counter-Threat\nFirst piece to move: Pawn`,
+        ephemeral: true,
+      });
     }
   },
 };
