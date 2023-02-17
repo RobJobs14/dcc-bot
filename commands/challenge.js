@@ -42,7 +42,7 @@ module.exports = {
       await interaction.reply({ content: "Answer Saved!", ephemeral: true });
     } else if (subcommand === "hint") {
       await interaction.reply({
-        content: `test`,
+        content: "test",
         ephemeral: true,
       });
     }
