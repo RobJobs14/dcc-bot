@@ -1,9 +1,5 @@
 const { SlashCommandBuilder } = require("discord.js");
 
-const dotenv = require("dotenv");
-
-dotenv.config();
-
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("challenge")
