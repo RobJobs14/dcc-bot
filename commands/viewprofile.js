@@ -117,14 +117,18 @@ module.exports = {
           .setURL(
             `https://www.chess.com/play/online/new?opponent=${profile.chesscomUsername}`
           )
-          .setLabel(`Challenge ${interaction.user.username} on Chess.com!`)
+          .setLabel(
+            `Challenge ${interaction.targetUser.username} on Chess.com!`
+          )
           .setStyle(ButtonStyle.Link)
       );
     } else {
       buttonRow1.addComponents(
         new ButtonBuilder()
           .setCustomId(`chesscomDisabled`)
-          .setLabel(`Challenge ${interaction.user.username} on Chess.com!`)
+          .setLabel(
+            `Challenge ${interaction.targetUser.username} on Chess.com!`
+          )
           .setStyle(ButtonStyle.Secondary)
           .setDisabled(true)
       );
@@ -135,14 +139,14 @@ module.exports = {
       buttonRow2.addComponents(
         new ButtonBuilder()
           .setURL(`https://lichess.org/?user=${profile.lichessUsername}#friend`)
-          .setLabel(`Challenge ${interaction.user.username} on Lichess!`)
+          .setLabel(`Challenge ${interaction.targetUser.username} on Lichess!`)
           .setStyle(ButtonStyle.Link)
       );
     } else {
       buttonRow2.addComponents(
         new ButtonBuilder()
           .setCustomId(`lichessDisabled`)
-          .setLabel(`Challenge ${interaction.user.username} on Lichess!`)
+          .setLabel(`Challenge ${interaction.targetUser.username} on Lichess!`)
           .setStyle(ButtonStyle.Secondary)
           .setDisabled(true)
       );
