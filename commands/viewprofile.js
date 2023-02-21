@@ -110,21 +110,43 @@ module.exports = {
       )
       .setColor("0xdbc300");
 
-    const buttonRow1 = new ActionRowBuilder().addComponents(
-      new ButtonBuilder()
-        .setURL(
-          `https://www.chess.com/play/online/new?opponent=${profile.chesscomUsername}`
-        )
-        .setLabel(`Challenge ${interaction.targetUser.username} on Chess.com!`)
-        .setStyle(ButtonStyle.Link)
-    );
+    const buttonRow1 = new ActionRowBuilder();
+    if (profile.chesscomUsername) {
+      buttonRow1.addComponents(
+        new ButtonBuilder()
+          .setURL(
+            `https://www.chess.com/play/online/new?opponent=${profile.chesscomUsername}`
+          )
+          .setLabel(`Challenge ${interaction.user.username} on Chess.com!`)
+          .setStyle(ButtonStyle.Link)
+      );
+    } else {
+      buttonRow1.addComponents(
+        new ButtonBuilder()
+          .setCustomId(`chesscomDisabled`)
+          .setLabel(`Challenge ${interaction.user.username} on Chess.com!`)
+          .setStyle(ButtonStyle.Secondary)
+          .setDisabled(true)
+      );
+    }
 
-    const buttonRow2 = new ActionRowBuilder().addComponents(
-      new ButtonBuilder()
-        .setURL(`https://lichess.org/?user=${profile.lichessUsername}#friend`)
-        .setLabel(`Challenge ${interaction.targetUser.username} on Lichess!`)
-        .setStyle(ButtonStyle.Link)
-    );
+    const buttonRow2 = new ActionRowBuilder();
+    if (profile.lichessUsername) {
+      buttonRow2.addComponents(
+        new ButtonBuilder()
+          .setURL(`https://lichess.org/?user=${profile.lichessUsername}#friend`)
+          .setLabel(`Challenge ${interaction.user.username} on Lichess!`)
+          .setStyle(ButtonStyle.Link)
+      );
+    } else {
+      buttonRow2.addComponents(
+        new ButtonBuilder()
+          .setCustomId(`lichessDisabled`)
+          .setLabel(`Challenge ${interaction.user.username} on Lichess!`)
+          .setStyle(ButtonStyle.Secondary)
+          .setDisabled(true)
+      );
+    }
 
     interaction.reply({
       ephemeral: true,
