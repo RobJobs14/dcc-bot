@@ -38,7 +38,7 @@ module.exports = {
       await interaction.reply({ content: "Answer Saved!", ephemeral: true });
     } else if (subcommand === "hint") {
       await interaction.reply({
-        content: `Hint: What if it was White to move?\n\nTactical Motifs: Zugzwang\n\nFirst piece to move: Rook`,
+        content: `Hint: What if it was White to move? What piece are they going to play?\n\nTactical Motifs: Zugzwang\n\nFirst piece to move: Rook`,
         ephemeral: true,
       });
     }
