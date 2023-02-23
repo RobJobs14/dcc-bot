@@ -38,7 +38,7 @@ module.exports = {
       await interaction.reply({ content: "Answer Saved!", ephemeral: true });
     } else if (subcommand === "hint") {
       await interaction.reply({
-        content: `Hint: White's pawn on c7 might seem dead lost, but it has yet to show his full strength! As per the previous weekly challenge, a great way to defend against threats is to create an even stronger one. Imagine if it was Black's turn to play: he would definitely capture the pawn with ... Rxc7. Are there any interesting ideas that could possibly cause a problem to that specific position? What if Black doesn't capture? If you could make multiple moves, what could reliably defend the c7 pawn?\n\nTactical Motifs: Fork, Counter-Threat\n\nFirst piece to move: Pawn`,
+        content: `Hint: What if it was White to move?\n\nTactical Motifs: Zugzwang\n\nFirst piece to move: Rook`,
         ephemeral: true,
       });
     }
