@@ -5,7 +5,7 @@ module.exports = {
   once: true,
   execute(client) {
     console.log(`Ready! Logged in as ${client.user.tag}`);
-    client.user.setActivity("for an upcoming event (tournament)!", {
+    client.user.setActivity("for an upcoming tournament!", {
       type: ActivityType.Watching,
     });
   },
