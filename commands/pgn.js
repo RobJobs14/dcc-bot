@@ -31,7 +31,7 @@ module.exports = {
     .addSubcommand((subcommand) =>
       subcommand
         .setName("view")
-        .setDescription("Display the PGN on an board (coming soon)")
+        .setDescription("Display a PGN on a board")
         .addStringOption((option) =>
           option
             .setName("pgn")
