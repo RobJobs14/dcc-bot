@@ -224,7 +224,7 @@ module.exports = {
 
       const chesssable = new ActionRowBuilder().addComponents(
         new ButtonBuilder()
-          .setURL(`google.com`)
+          .setURL(`https://www.chessable.com/courses/?fen`)
           .setLabel(`Search on Chessable`)
           .setStyle(ButtonStyle.Link)
       );
