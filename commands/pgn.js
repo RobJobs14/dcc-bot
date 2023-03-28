@@ -222,13 +222,6 @@ module.exports = {
           .setEmoji(`🔄`)
       );
 
-      const chessableRow = new ActionRowBuilder().addComponents(
-        new ButtonBuilder()
-          .setURL(`https://www.chessable.com/courses/?fen=${currentFen}`)
-          .setLabel(`Search on Chessable`)
-          .setStyle(ButtonStyle.Link)
-      );
-
       // Save the button row to the client for later reference
       interaction.client.buttons = new Collection();
       interaction.client.buttons.set("doubleleft", row);
@@ -240,7 +233,7 @@ module.exports = {
       // Send the initial embed and buttons
       const message = await interaction.reply({
         embeds: [embed],
-        components: [row, chessableRow],
+        components: [row],
       });
 
       // Create a collector for button interactions
@@ -400,7 +393,7 @@ module.exports = {
             .setEmoji(`🔄`)
         );
 
-        const updatedChessableRow = new ActionRowBuilder().addComponents(
+        const chessable = new ActionRowBuilder().addComponents(
           new ButtonBuilder()
             .setURL(`https://www.chessable.com/courses/?fen=${currentFen}`)
             .setLabel(`Search on Chessable`)
@@ -410,7 +403,7 @@ module.exports = {
         // Update the original message with the updated embed and button row
         await interaction.update({
           embeds: [updatedEmbed],
-          components: [updatedRow, updatedChessableRow],
+          components: [updatedRow, chessable],
         });
       });
 
@@ -422,7 +415,7 @@ module.exports = {
 
         await interaction.editReply({
           embeds: [embed],
-          components: [updatedRow],
+          components: [updatedRow, chessable],
         });
       });
     }
