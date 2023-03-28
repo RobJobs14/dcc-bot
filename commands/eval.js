@@ -53,11 +53,11 @@ module.exports = {
 
           if (!apiResponse.pvs || !apiResponse.pvs.length) {
             return interaction.reply({
-              content: `Sorry, cloud analysis is not available for this position. You may visit [chess.com](https://www.chess.com/analysis?fen=${encodeURI(
+              content: `Sorry, cloud analysis is not available for this position. You may visit [chess.com](<https://www.chess.com/analysis?fen=${encodeURI(
                 fen
-              )}) or [lichess](https://lichess.org/analysis?fen=${encodeURI(
+              )}>) or [lichess](<https://lichess.org/analysis?fen=${encodeURI(
                 fen
-              )}) instead for local evaluation.`,
+              )}>) instead for local evaluation.`,
               ephemeral: true,
             });
           }
