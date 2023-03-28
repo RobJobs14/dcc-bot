@@ -225,8 +225,9 @@ module.exports = {
       const analyze = new ActionRowBuilder().addComponents(
         new ButtonBuilder()
           .setURL(`https://www.chess.com/analysis?fen=${encodeURI(currentFen)}`)
-          .setLabel(`<:chesscom:1090274242886635531> Analyze on Chess.com`)
-          .setStyle(ButtonStyle.Link),
+          .setLabel(`Analyze on Chess.com`)
+          .setStyle(ButtonStyle.Link)
+          .setEmoji(`1090274242886635531`),
         new ButtonBuilder()
           .setURL(`https://lichess.org/analysis?fen=${encodeURI(currentFen)}`)
           .setLabel(`Analyze on Lichess`)
