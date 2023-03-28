@@ -222,6 +222,23 @@ module.exports = {
           .setEmoji(`🔄`)
       );
 
+      const analyze = new ActionRowBuilder().addComponents(
+        new ButtonBuilder()
+          .setURL(
+            `https://www.chess.com/analysis?fen=${encodeURIComponent(
+              currentFen
+            )}`
+          )
+          .setLabel(`Analyze on Chess.com`)
+          .setStyle(ButtonStyle.Link),
+        new ButtonBuilder()
+          .setURL(
+            `https://lichess.org/analysis?fen=${encodeURIComponent(currentFen)}`
+          )
+          .setLabel(`Analyze on Lichess`)
+          .setStyle(ButtonStyle.Link)
+      );
+
       const chesssable = new ActionRowBuilder().addComponents(
         new ButtonBuilder()
           .setURL(
@@ -244,7 +261,7 @@ module.exports = {
       // Send the initial embed and buttons
       const message = await interaction.reply({
         embeds: [embed],
-        components: [row, chesssable],
+        components: [row, analyze, chesssable],
       });
 
       // Create a collector for button interactions
@@ -397,10 +414,40 @@ module.exports = {
             .setEmoji(`🔄`)
         );
 
+        const updatedAnalyze = new ActionRowBuilder().addComponents(
+          new ButtonBuilder()
+            .setURL(
+              `https://www.chess.com/analysis?fen=${encodeURIComponent(
+                currentFen
+              )}`
+            )
+            .setLabel(`Analyze on Chess.com`)
+            .setStyle(ButtonStyle.Link),
+          new ButtonBuilder()
+            .setURL(
+              `https://lichess.org/analysis?fen=${encodeURIComponent(
+                currentFen
+              )}`
+            )
+            .setLabel(`Analyze on Lichess`)
+            .setStyle(ButtonStyle.Link)
+        );
+
+        const updatedChesssable = new ActionRowBuilder().addComponents(
+          new ButtonBuilder()
+            .setURL(
+              `https://www.chessable.com/courses/?fen=${encodeURIComponent(
+                currentFen
+              )}`
+            )
+            .setLabel(`Search on Chessable`)
+            .setStyle(ButtonStyle.Link)
+        );
+
         // Update the original message with the updated embed and button row
         await interaction.update({
           embeds: [updatedEmbed],
-          components: [updatedRow],
+          components: [updatedRow, updatedAnalyze, updatedChesssable],
         });
       });
 
