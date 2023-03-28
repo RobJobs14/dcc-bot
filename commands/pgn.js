@@ -224,7 +224,7 @@ module.exports = {
 
       const chesssable = new ActionRowBuilder().addComponents(
         new ButtonBuilder()
-          .setURL(`https://www.chessable.com/courses/?fen`)
+          .setURL(`https://www.chessable.com/courses/?fen=${currentFen}`)
           .setLabel(`Search on Chessable`)
           .setStyle(ButtonStyle.Link)
       );
@@ -240,7 +240,7 @@ module.exports = {
       // Send the initial embed and buttons
       const message = await interaction.reply({
         embeds: [embed],
-        components: [row],
+        components: [row, chesssable],
       });
 
       // Create a collector for button interactions
