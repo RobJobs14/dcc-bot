@@ -213,7 +213,20 @@ module.exports = {
         }
       }
 
-      interaction.reply({ embeds: [tablebaseEmbed] });
+      const analyze = new ActionRowBuilder().addComponents(
+        new ButtonBuilder()
+          .setURL(`https://www.chess.com/analysis?fen=${encodeURI(fen)}`)
+          .setLabel(`Analyze on Chess.com`)
+          .setStyle(ButtonStyle.Link)
+          .setEmoji(`1090274242886635531`),
+        new ButtonBuilder()
+          .setURL(`https://lichess.org/analysis?fen=${encodeURI(fen)}`)
+          .setLabel(`Analyze on Lichess`)
+          .setStyle(ButtonStyle.Link)
+          .setEmoji(`1090279571846340619`)
+      );
+
+      interaction.reply({ embeds: [tablebaseEmbed], components: [analyze] });
     }
   },
 };
