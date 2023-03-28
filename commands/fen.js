@@ -31,9 +31,7 @@ module.exports = {
     );
     const chesssable = new ActionRowBuilder().addComponents(
       new ButtonBuilder()
-        .setURL(
-          `https://www.chessable.com/courses/?fen=${encodeURI(currentFen)}`
-        )
+        .setURL(`https://www.chessable.com/courses/?fen=${encodeURI(fen)}`)
         .setLabel(`Search on Chessable`)
         .setStyle(ButtonStyle.Link)
         .setEmoji(`1090274244014907422`)
