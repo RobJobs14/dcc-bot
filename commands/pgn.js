@@ -225,7 +225,7 @@ module.exports = {
       const analyze = new ActionRowBuilder().addComponents(
         new ButtonBuilder()
           .setURL(
-            `https://www.chess.com/analysis?fen=${encodeURIComponent(
+            `https://www.chess.com/analysis?fen=${encodeURI(
               currentFen
             )}`
           )
@@ -233,7 +233,7 @@ module.exports = {
           .setStyle(ButtonStyle.Link),
         new ButtonBuilder()
           .setURL(
-            `https://lichess.org/analysis?fen=${encodeURIComponent(currentFen)}`
+            `https://lichess.org/analysis?fen=${encodeURI(currentFen)}`
           )
           .setLabel(`Analyze on Lichess`)
           .setStyle(ButtonStyle.Link)
@@ -242,7 +242,7 @@ module.exports = {
       const chesssable = new ActionRowBuilder().addComponents(
         new ButtonBuilder()
           .setURL(
-            `https://www.chessable.com/courses/?fen=${encodeURIComponent(
+            `https://www.chessable.com/courses/?fen=${encodeURI(
               currentFen
             )}`
           )
@@ -417,7 +417,7 @@ module.exports = {
         const updatedAnalyze = new ActionRowBuilder().addComponents(
           new ButtonBuilder()
             .setURL(
-              `https://www.chess.com/analysis?fen=${encodeURIComponent(
+              `https://www.chess.com/analysis?fen=${encodeURI(
                 currentFen
               )}`
             )
@@ -425,7 +425,7 @@ module.exports = {
             .setStyle(ButtonStyle.Link),
           new ButtonBuilder()
             .setURL(
-              `https://lichess.org/analysis?fen=${encodeURIComponent(
+              `https://lichess.org/analysis?fen=${encodeURI(
                 currentFen
               )}`
             )
@@ -436,7 +436,7 @@ module.exports = {
         const updatedChesssable = new ActionRowBuilder().addComponents(
           new ButtonBuilder()
             .setURL(
-              `https://www.chessable.com/courses/?fen=${encodeURIComponent(
+              `https://www.chessable.com/courses/?fen=${encodeURI(
                 currentFen
               )}`
             )

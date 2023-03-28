@@ -1,4 +1,11 @@
-const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
+const {
+  SlashCommandBuilder,
+  EmbedBuilder,
+  ActionRowBuilder,
+  ButtonBuilder,
+  ButtonStyle,
+  ComponentType,
+} = require("discord.js");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -46,7 +53,9 @@ module.exports = {
 
           if (!apiResponse.pvs || !apiResponse.pvs.length) {
             return interaction.reply({
-              content: `Sorry, cloud analysis is not available for this position. You may visit [lichess](https://lichess.org/analysis?fen=${encodeURI(
+              content: `Sorry, cloud analysis is not available for this position. You may visit [chess.com](https://www.chess.com/analysis?fen=${encodeURI(
+                fen
+              )}) or [lichess](https://lichess.org/analysis?fen=${encodeURI(
                 fen
               )}) instead for local evaluation.`,
               ephemeral: true,
@@ -80,7 +89,22 @@ module.exports = {
             .setDescription(lines.join("\n"))
             .setImage(imageURL);
 
-          interaction.reply({ embeds: [evalEmbed] });
+          const analyze = new ActionRowBuilder().addComponents(
+            new ButtonBuilder()
+              .setURL(
+                `https://www.chess.com/analysis?fen=${encodeURIComponent(fen)}`
+              )
+              .setLabel(`Analyze on Chess.com`)
+              .setStyle(ButtonStyle.Link),
+            new ButtonBuilder()
+              .setURL(
+                `https://lichess.org/analysis?fen=${encodeURIComponent(fen)}`
+              )
+              .setLabel(`Analyze on Lichess`)
+              .setStyle(ButtonStyle.Link)
+          );
+
+          interaction.reply({ embeds: [evalEmbed], components: [analyze] });
         })();
       });
     } else if (subcommand === "tablebase") {
