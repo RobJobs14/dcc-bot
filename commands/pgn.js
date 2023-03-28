@@ -41,6 +41,17 @@ module.exports = {
         .addStringOption((option) =>
           option.setName("fen").setDescription("The starting position")
         )
+    )
+    .addSubcommand((subcommand) =>
+      subcommand
+        .setName("game")
+        .setDescription("Display the PGN of an online game (coming soon)")
+        .addStringOption((option) =>
+          option
+            .setName("url")
+            .setDescription("The chess.com or lichess link")
+            .setRequired(true)
+        )
     ),
 
   async execute(interaction) {
@@ -451,6 +462,11 @@ module.exports = {
           embeds: [embed],
           components: [updatedRow],
         });
+      });
+    } else if (subcommand === "game") {
+      await interaction.reply({
+        content: "Coming Soon!",
+        ephemeral: true,
       });
     }
   },
