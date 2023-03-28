@@ -232,6 +232,7 @@ module.exports = {
           .setURL(`https://lichess.org/analysis?fen=${encodeURI(currentFen)}`)
           .setLabel(`Analyze on Lichess`)
           .setStyle(ButtonStyle.Link)
+          .setEmoji(`1090275466591608943`)
       );
 
       const chesssable = new ActionRowBuilder().addComponents(
@@ -241,6 +242,7 @@ module.exports = {
           )
           .setLabel(`Search on Chessable`)
           .setStyle(ButtonStyle.Link)
+          .setEmoji(`1090274244014907422`)
       );
 
       // Save the button row to the client for later reference
@@ -413,11 +415,13 @@ module.exports = {
               `https://www.chess.com/analysis?fen=${encodeURI(currentFen)}`
             )
             .setLabel(`Analyze on Chess.com`)
-            .setStyle(ButtonStyle.Link),
+            .setStyle(ButtonStyle.Link)
+            .setEmoji(`1090274242886635531`),
           new ButtonBuilder()
             .setURL(`https://lichess.org/analysis?fen=${encodeURI(currentFen)}`)
             .setLabel(`Analyze on Lichess`)
             .setStyle(ButtonStyle.Link)
+            .setEmoji(`1090275466591608943`)
         );
 
         const updatedChesssable = new ActionRowBuilder().addComponents(
@@ -427,6 +431,7 @@ module.exports = {
             )
             .setLabel(`Search on Chessable`)
             .setStyle(ButtonStyle.Link)
+            .setEmoji(`1090274244014907422`)
         );
 
         // Update the original message with the updated embed and button row
