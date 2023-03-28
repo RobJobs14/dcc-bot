@@ -265,7 +265,7 @@ module.exports = {
           .setEmoji(`🔄`)
       );
 
-      let updatedChessableRow = new ActionRowBuilder().addComponents(
+      let chessable = new ActionRowBuilder().addComponents(
         new ButtonBuilder()
           .setURL(`https://www.chessable.com/courses/?fen=${currentFen}`)
           .setLabel(`Search on Chessable`)
