@@ -37,7 +37,7 @@ module.exports = {
       });
     } else if (subcommand === "notation") {
       const notationEmbed = new EmbedBuilder()
-        .setColor("0xdbc300")
+        .setColor(0xdbc300)
         .setTitle("List of Chess Notations")
         .addFields(
           { name: "!", value: "Good move", inline: true },

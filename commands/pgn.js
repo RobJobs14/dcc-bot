@@ -203,6 +203,7 @@ module.exports = {
 
       const embed = new EmbedBuilder()
         .setDescription(description)
+        .setColor(0xdbc300)
         .setImage(imageURL);
 
       // Create the button row
@@ -390,6 +391,7 @@ module.exports = {
         )}`;
         const updatedEmbed = new EmbedBuilder()
           .setDescription(description)
+          .setColor(0xdbc300)
           .setImage(imageURL);
 
         // Update the button row

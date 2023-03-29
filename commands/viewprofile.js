@@ -108,7 +108,7 @@ module.exports = {
           inline: true,
         }
       )
-      .setColor("0xdbc300");
+      .setColor(0xdbc300);
 
     const buttonRow1 = new ActionRowBuilder();
     if (profile.chesscomUsername) {

@@ -106,7 +106,7 @@ module.exports = {
             const id = pgn.id;
             const imageURL = `https://lichess1.org/game/export/gif/${id}.gif?theme=brown&piece=cburnett`;
             const openingEmbed = new EmbedBuilder()
-              .setColor("0xdbc300")
+              .setColor(0xdbc300)
               .setTitle(`${ecoValue} ${nameValue}`)
               .setDescription(`${pgnOutput}`)
               .setImage(imageURL);
@@ -175,7 +175,7 @@ module.exports = {
 
         // Create the embed and buttons for the first page
         const embed = new EmbedBuilder()
-          .setColor("0xdbc300")
+          .setColor(0xdbc300)
           .addFields(
             ...matchingOpenings
               .slice(start, end)
@@ -349,7 +349,7 @@ module.exports = {
           const imageURL = `https://lichess1.org/game/export/gif/${id}.gif?theme=brown&piece=cburnett`;
 
           const openingEmbed = new EmbedBuilder()
-            .setColor("0xdbc300")
+            .setColor(0xdbc300)
             .setTitle(selectedOpening.name.substring(3))
             .setDescription(selectedOpening.value)
             .setImage(imageURL);
