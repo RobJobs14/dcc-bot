@@ -83,7 +83,7 @@ module.exports = {
           });
 
           const evalEmbed = new EmbedBuilder()
-            .setColor("0xdbc300")
+            .setColor(0xdbc300)
             .setTitle(`Cloud Evaluation Depth: ${apiResponse.depth}`)
             .setDescription(lines.join("\n"))
             .setImage(imageURL);
@@ -125,7 +125,7 @@ module.exports = {
         fen
       )}`;
       const tablebaseEmbed = new EmbedBuilder()
-        .setColor("0xdbc300")
+        .setColor(0xdbc300)
         .setTitle("7-piece Syzygy Tablebase")
         .setImage(imageURL);
 
