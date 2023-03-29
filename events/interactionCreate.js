@@ -53,6 +53,8 @@ module.exports = {
         await command.execute(interaction, profileData);
       } else if (interaction.isUserContextMenuCommand()) {
         await command.execute(interaction, targetProfileData);
+      } else if (interaction.isMessageContextMenuCommand()) {
+        await command.execute(interaction);
       }
     } catch (error) {
       console.error(`Error executing ${interaction.commandName}`);
