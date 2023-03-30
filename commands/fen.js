@@ -81,9 +81,9 @@ module.exports = {
           }
         );
         const data = await response.text();
-        console.log(data);
+        interaction.reply(data);
       } else {
-        console.log("No image found");
+        interaction.reply("No image found");
       }
     }
   },
