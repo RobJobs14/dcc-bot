@@ -9,7 +9,7 @@ module.exports = {
     .setType(ApplicationCommandType.Message),
 
   async execute(interaction) {
-    const { messageContent } = interaction.targetMessage.content;
+    const messageContent = interaction.targetMessage.content;
     console.log(messageContent);
   },
 };
