@@ -76,7 +76,10 @@ module.exports = {
         form.append("url", url);
         const wait = require("node:timers/promises").setTimeout;
         const response = await Promise.race([
-          fetch("<URL>", { method: "POST", body: form }),
+          fetch("http://robjobs.pythonanywhere.com/analyze", {
+            method: "POST",
+            body: form,
+          }),
           wait(15000),
         ]);
         if (response) {
