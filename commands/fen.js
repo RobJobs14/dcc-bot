@@ -5,6 +5,9 @@ const {
   ButtonStyle,
 } = require("discord.js");
 
+const fetch = require("node-fetch");
+const FormData = require("form-data");
+
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("fen")
@@ -65,11 +68,23 @@ module.exports = {
         return linkRegex.test(message.content);
       });
       if (lastImage) {
+        let url;
         if (lastImage.attachments.size > 0) {
-          console.log(lastImage.attachments.first().url);
+          url = lastImage.attachments.first().url;
         } else {
-          console.log(lastImage.content);
+          url = lastImage.content;
         }
+        const form = new FormData();
+        form.append("url", url);
+        const response = await fetch(
+          "http://robjobs.pythonanywhere.com/analyze",
+          {
+            method: "POST",
+            body: form,
+          }
+        );
+        const data = await response.text();
+        console.log(data);
       } else {
         console.log("No image found");
       }
