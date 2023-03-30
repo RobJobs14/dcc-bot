@@ -10,6 +10,6 @@ module.exports = {
 
   async execute(interaction) {
     const { messageContent } = interaction.targetMessage.content;
-    interaction.reply(messageContent);
+    console.log(messageContent);
   },
 };
