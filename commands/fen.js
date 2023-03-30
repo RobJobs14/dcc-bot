@@ -65,10 +65,12 @@ module.exports = {
         return linkRegex.test(message.content);
       });
       if (lastImage) {
-        console.log(lastImage.content);
+        console.log(lastImage.attachments.first().url);
       } else {
-        console.log("No image found");
+        console.log(lastImage.content);
       }
+    } else {
+      console.log("No image found");
     }
   },
 };
