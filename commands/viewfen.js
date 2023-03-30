@@ -5,7 +5,7 @@ const {
 
 module.exports = {
   data: new ContextMenuCommandBuilder()
-    .setName("View FEN")
+    .setName("View Fen")
     .setType(ApplicationCommandType.Message),
 
   async execute(interaction) {
