@@ -80,13 +80,13 @@ module.exports = {
             method: "POST",
             body: form,
           }),
-          wait(15000),
+          wait(20000),
         ]);
         if (response) {
           const data = await response.text();
           await interaction.editReply(data);
         } else {
-          await interaction.editReply("No response within 15 seconds");
+          await interaction.editReply("Sorry, I could not predict a FEN from the last image");
         }
       } else {
         await interaction.editReply("No image found");
