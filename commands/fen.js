@@ -5,9 +5,6 @@ const {
   ButtonStyle,
 } = require("discord.js");
 
-const fetch = require("node-fetch");
-const FormData = require("form-data");
-
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("fen")
