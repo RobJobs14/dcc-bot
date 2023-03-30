@@ -65,9 +65,9 @@ module.exports = {
         return linkRegex.test(message.content);
       });
       if (lastImage) {
-        interaction.reply(lastImage.content);
+        console.log(lastImage.content);
       } else {
-        interaction.reply("No image found");
+        console.log("No image found");
       }
     }
   },
