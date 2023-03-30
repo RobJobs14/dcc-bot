@@ -5,11 +5,11 @@ const {
 
 module.exports = {
   data: new ContextMenuCommandBuilder()
-    .setName("View Fen")
+    .setName("View FEN")
     .setType(ApplicationCommandType.Message),
 
   async execute(interaction) {
-    const messageContent = interaction.targetId;
+    const { messageContent } = interaction.targetMessage.content;
     interaction.reply(messageContent);
   },
 };
