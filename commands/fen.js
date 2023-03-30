@@ -56,18 +56,19 @@ module.exports = {
       });
     } else if (subcommand === "get") {
       const channel = interaction.channel;
-  const messages = await channel.messages.fetch({ limit: 100 });
-  const lastImage = messages.find((message) => {
-    if (message.attachments.size > 0) {
-      return true;
+      const messages = await channel.messages.fetch({ limit: 100 });
+      const lastImage = messages.find((message) => {
+        if (message.attachments.size > 0) {
+          return true;
+        }
+        const linkRegex = /https?:\/\/.*\.(?:png|jpg|gif)/;
+        return linkRegex.test(message.content);
+      });
+      if (lastImage) {
+        interaction.reply(lastImage.content);
+      } else {
+        interaction.reply("No image found");
+      }
     }
-    const linkRegex = /https?:\/\/.*\.(?:png|jpg|gif)/;
-    return linkRegex.test(message.content);
-  });
-  if (lastImage) {
-    console.log(lastImage.content);
-  } else {
-    console.log("No message with attachment or link found");
-  }
   },
 };
