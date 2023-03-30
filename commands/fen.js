@@ -12,7 +12,7 @@ module.exports = {
     .addSubcommand((subcommand) =>
       subcommand
         .setName("view")
-        .setDescription("Display a FEN")
+        .setDescription("Display a FEN string")
         .addStringOption((option) =>
           option
             .setName("fen")
@@ -23,7 +23,7 @@ module.exports = {
     .addSubcommand((subcommand) =>
       subcommand
         .setName("get")
-        .setDescription("Predict the FEN of a 2D chessboard")
+        .setDescription("Predict the FEN of the most recent image in the channel")
     ),
 
   async execute(interaction) {
