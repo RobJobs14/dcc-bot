@@ -7,19 +7,19 @@ module.exports = {
     .addSubcommand((subcommand) =>
       subcommand
         .setName("email")
-        .setDescription("Get the Dawson Chess Club email")
+        .setDescription("Display the Dawson Chess Club email")
     )
     .addSubcommand((subcommand) =>
       subcommand
         .setName("invite")
         .setDescription(
-          "Get the invite link to the Dawson Chess Club discord server"
+          "Display the invite link to the Dawson Chess Club discord server"
         )
     )
     .addSubcommand((subcommand) =>
       subcommand
         .setName("notation")
-        .setDescription("Get a list of chess notations")
+        .setDescription("Display a list of chess notations")
     ),
 
   async execute(interaction) {

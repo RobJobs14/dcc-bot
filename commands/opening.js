@@ -22,7 +22,7 @@ module.exports = {
     .addSubcommand((subcommand) =>
       subcommand
         .setName("gif")
-        .setDescription("Get the GIF of a specific opening")
+        .setDescription("Display the GIF of a specific opening")
         .addStringOption((option) =>
           option
             .setName("query")
@@ -33,7 +33,7 @@ module.exports = {
     .addSubcommand((subcommand) =>
       subcommand
         .setName("search")
-        .setDescription("Search for an opening and get its GIF")
+        .setDescription("Search for an opening and display its GIF")
         .addStringOption((option) =>
           option
             .setName("query")

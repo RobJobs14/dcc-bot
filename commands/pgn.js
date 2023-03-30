@@ -17,11 +17,11 @@ module.exports = {
     .addSubcommand((subcommand) =>
       subcommand
         .setName("gif")
-        .setDescription("Get the GIF of a PGN")
+        .setDescription("Display the GIF of a PGN")
         .addStringOption((option) =>
           option
             .setName("pgn")
-            .setDescription("The moves to view")
+            .setDescription("The PGN moves to view")
             .setRequired(true)
         )
         .addStringOption((option) =>
@@ -31,11 +31,11 @@ module.exports = {
     .addSubcommand((subcommand) =>
       subcommand
         .setName("view")
-        .setDescription("Display a PGN on a board")
+        .setDescription("Display a PGN")
         .addStringOption((option) =>
           option
             .setName("pgn")
-            .setDescription("The moves to view")
+            .setDescription("The PGN moves to view")
             .setRequired(true)
         )
         .addStringOption((option) =>
