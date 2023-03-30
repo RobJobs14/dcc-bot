@@ -55,6 +55,7 @@ module.exports = {
         components: [analyze, chesssable],
       });
     } else if (subcommand === "get") {
+      await interaction.deferReply();
       const channel = interaction.channel;
       const messages = await channel.messages.fetch({ limit: 100 });
       const lastImage = messages.find((message) => {
@@ -73,17 +74,19 @@ module.exports = {
         }
         const form = new FormData();
         form.append("url", url);
-        const response = await fetch(
-          "http://robjobs.pythonanywhere.com/analyze",
-          {
-            method: "POST",
-            body: form,
-          }
-        );
-        const data = await response.text();
-        interaction.reply(data);
+        const wait = require("node:timers/promises").setTimeout;
+        const response = await Promise.race([
+          fetch("<URL>", { method: "POST", body: form }),
+          wait(15000),
+        ]);
+        if (response) {
+          const data = await response.text();
+          await interaction.editReply(data);
+        } else {
+          await interaction.editReply("No response within 15 seconds");
+        }
       } else {
-        interaction.reply("No image found");
+        await interaction.editReply("No image found");
       }
     }
   },
