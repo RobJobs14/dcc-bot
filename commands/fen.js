@@ -22,7 +22,7 @@ module.exports = {
     )
     .addSubcommand((subcommand) =>
       subcommand
-        .setName("get")
+        .setName("scan")
         .setDescription("Predict the FEN of the most recent image in the channel")
     ),
 
@@ -54,7 +54,7 @@ module.exports = {
         content: `http://lichess1.org/export/fen.gif?fen=${encodeURI(fen)}`,
         components: [analyze, chesssable],
       });
-    } else if (subcommand === "get") {
+    } else if (subcommand === "scan") {
       await interaction.deferReply();
       const channel = interaction.channel;
       const messages = await channel.messages.fetch({ limit: 100 });
