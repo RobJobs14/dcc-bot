@@ -77,7 +77,7 @@ module.exports = {
         const whiteWinRate = ((move.white / totalGames) * 100).toFixed(1);
         const drawRate = ((move.draws / totalGames) * 100).toFixed(1);
         const blackWinRate = ((move.black / totalGames) * 100).toFixed(1);
-        openingEmbed.addField(
+        openingEmbed.addFields(
           `${move.san}`,
           `${totalGames} games | ${whiteWinRate}% / ${drawRate}% / ${blackWinRate}% | Avg. rating: ${move.averageRating}`
         );
@@ -89,7 +89,7 @@ module.exports = {
       const drawRate = ((apiResponse.draws / totalGames) * 100).toFixed(1);
       const blackWinRate = ((apiResponse.black / totalGames) * 100).toFixed(1);
 
-      openingEmbed.addField(
+      openingEmbed.addFields(
         "Σ",
         `${totalGames} games | ${whiteWinRate}% / ${drawRate}% / ${blackWinRate}%`
       );
@@ -106,7 +106,7 @@ module.exports = {
         else if (game.winner === "black") result = "0-1";
         else result = "1/2-1/2";
 
-        topGamesEmbed.addField(
+        topGamesEmbed.addFields(
           game.uci,
           `[${whitePlayer} - ${blackPlayer}](https://lichess.org/${game.id}) | ${result}`
         );
