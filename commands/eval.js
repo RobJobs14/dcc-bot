@@ -50,8 +50,6 @@ module.exports = {
               return {};
             });
 
-          console.log(res);
-
           if (!apiResponse.pvs || !apiResponse.pvs.length) {
             return interaction.reply({
               content: `Sorry, cloud analysis is not available for this position. You may visit [chess.com](<https://www.chess.com/analysis?fen=${encodeURI(
