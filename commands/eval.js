@@ -45,11 +45,12 @@ module.exports = {
             `https://lichess.org/api/cloud-eval?multiPv=3&fen=${fen}`
           )
             .then((res) => res.json())
-            .console.log(res)
             .catch((err) => {
               console.error(err);
               return {};
             });
+
+          console.log(res);
 
           if (!apiResponse.pvs || !apiResponse.pvs.length) {
             return interaction.reply({
@@ -67,7 +68,9 @@ module.exports = {
           )}`;
 
           const uciMoves = apiResponse.pvs.map((pv) => pv.moves);
+          console.log(uciMoves);
           const pgnMoves = await convertUCIToPGN(fen, uciMoves);
+          console.log(pgnMoves);
 
           const lines = apiResponse.pvs.map((pv) => {
             if (pv.mate) {
@@ -82,6 +85,8 @@ module.exports = {
               }`;
             }
           });
+
+          console.log(lines);
 
           const evalEmbed = new EmbedBuilder()
             .setColor(0xdbc300)
