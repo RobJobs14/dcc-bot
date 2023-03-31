@@ -45,6 +45,7 @@ module.exports = {
             `https://lichess.org/api/cloud-eval?multiPv=3&fen=${fen}`
           )
             .then((res) => res.json())
+            .console.log(res)
             .catch((err) => {
               console.error(err);
               return {};
