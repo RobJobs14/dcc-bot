@@ -1,3 +1,5 @@
+import { Chess } from "chess.js";
+
 export async function convertUCIToPGN(fen, uciMoves) {
   const pgnMoves = [];
 
@@ -20,22 +22,13 @@ export async function convertUCIToPGN(fen, uciMoves) {
     }
     const history = chess.history();
     console.log(history);
-    let pgnMove = "";
-    if (
-      fen === "startpos" ||
-      fen === "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
-    ) {
-      for (let i = 0; i < history.length; i++) {
-        if (i % 2 === 0) {
-          pgnMove += `${Math.floor(i / 2) + 1}. `;
-        }
-        pgnMove += `${history[i]} `;
-      }
-    } else {
-      pgnMove = chess.pgn({ newline_char: "\n" }).split("\n").slice(2).join("");
-    }
+    let pgnMove = chess
+      .pgn({ newline_char: "\n" })
+      .split("\n")
+      .slice(2)
+      .join("");
     pgnMove = pgnMove.replace(/(\.\s)\.\.\.\s/g, "... ");
-    pgnMoves.push(pgnMove.trim());
+    pgnMoves.push(pgnMove);
   }
 
   return pgnMoves;
