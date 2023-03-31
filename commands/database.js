@@ -59,6 +59,7 @@ module.exports = {
       let url = `https://explorer.lichess.ovh/masters`;
       if (fen) url += `?fen=${fen}`;
       if (pgn) url += `${fen ? "&" : "?"}pgn=${pgn}`;
+      url += `${fen || pgn ? "&" : "?"}moves=10`;
       const apiResponse = await fetch(url)
         .then((res) => res.json())
         .catch((err) => {
