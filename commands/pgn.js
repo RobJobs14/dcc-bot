@@ -21,7 +21,7 @@ module.exports = {
         .addStringOption((option) =>
           option
             .setName("pgn")
-            .setDescription("The PGN moves to view")
+            .setDescription("The PGN string to display")
             .setRequired(true)
         )
         .addStringOption((option) =>
@@ -35,7 +35,7 @@ module.exports = {
         .addStringOption((option) =>
           option
             .setName("pgn")
-            .setDescription("The PGN moves to view")
+            .setDescription("The PGN string to display")
             .setRequired(true)
         )
         .addStringOption((option) =>

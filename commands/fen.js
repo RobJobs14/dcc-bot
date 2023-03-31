@@ -12,7 +12,7 @@ module.exports = {
     .addSubcommand((subcommand) =>
       subcommand
         .setName("view")
-        .setDescription("Display a FEN string")
+        .setDescription("Display a FEN")
         .addStringOption((option) =>
           option
             .setName("fen")
@@ -23,7 +23,9 @@ module.exports = {
     .addSubcommand((subcommand) =>
       subcommand
         .setName("scan")
-        .setDescription("Predict the FEN of the most recent image in the channel")
+        .setDescription(
+          "Predict the FEN of the most recent image in the channel"
+        )
     ),
 
   async execute(interaction) {
@@ -86,7 +88,9 @@ module.exports = {
           const data = await response.text();
           await interaction.editReply(data);
         } else {
-          await interaction.editReply("Sorry, I could not predict a FEN from the last image");
+          await interaction.editReply(
+            "Sorry, I could not predict a FEN from the last image"
+          );
         }
       } else {
         await interaction.editReply("No image found");
