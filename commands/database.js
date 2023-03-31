@@ -83,10 +83,9 @@ module.exports = {
         openingEmbed.addFields(
           {
             name: "\u200B",
-            value: `${move.san}: ${whiteWinRate}% / ${drawRate}% / ${blackWinRate}%`,
-            inline: false,
+            value: `${move.san} ${whiteWinRate}% / ${drawRate}% / ${blackWinRate}%`,
           },
-          { name: "\u200B", value: `${totalGames} games`, inline: true }
+          { name: "\u200B", value: `${totalGames} games` }
         );
       });
 
@@ -98,11 +97,10 @@ module.exports = {
 
       openingEmbed.addFields(
         {
-          name: "Σ",
-          value: `${whiteWinRate}% / ${drawRate}% / ${blackWinRate}%`,
-          inline: true,
+          name: "\u200B",
+          value: `Σ ${whiteWinRate}% / ${drawRate}% / ${blackWinRate}%`,
         },
-        { name: "\u200B", value: `${totalGames} games`, inline: true }
+        { name: "\u200B", value: `${totalGames} games` }
       );
 
       const topGamesEmbed = new EmbedBuilder()
