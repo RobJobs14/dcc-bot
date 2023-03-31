@@ -77,10 +77,10 @@ module.exports = {
         const whiteWinRate = ((move.white / totalGames) * 100).toFixed(1);
         const drawRate = ((move.draws / totalGames) * 100).toFixed(1);
         const blackWinRate = ((move.black / totalGames) * 100).toFixed(1);
-        openingEmbed.addFields(
-          `${move.san}`,
-          `${totalGames} games | ${whiteWinRate}% / ${drawRate}% / ${blackWinRate}% | Avg. rating: ${move.averageRating}`
-        );
+        openingEmbed.addFields({
+          name: `${move.san}`,
+          value: `${totalGames} games | ${whiteWinRate}% / ${drawRate}% / ${blackWinRate}% | Avg. rating: ${move.averageRating}`,
+        });
       });
 
       const totalGames =
@@ -89,10 +89,10 @@ module.exports = {
       const drawRate = ((apiResponse.draws / totalGames) * 100).toFixed(1);
       const blackWinRate = ((apiResponse.black / totalGames) * 100).toFixed(1);
 
-      openingEmbed.addFields(
-        "Σ",
-        `${totalGames} games | ${whiteWinRate}% / ${drawRate}% / ${blackWinRate}%`
-      );
+      openingEmbed.addFields({
+        name: "Σ",
+        value: `${totalGames} games | ${whiteWinRate}% / ${drawRate}% / ${blackWinRate}%`,
+      });
 
       const topGamesEmbed = new EmbedBuilder()
         .setTitle("Top Games")
@@ -106,10 +106,10 @@ module.exports = {
         else if (game.winner === "black") result = "0-1";
         else result = "1/2-1/2";
 
-        topGamesEmbed.addFields(
-          game.uci,
-          `[${whitePlayer} - ${blackPlayer}](https://lichess.org/${game.id}) | ${result}`
-        );
+        topGamesEmbed.addFields({
+          name: game.uci,
+          value: `[${whitePlayer} - ${blackPlayer}](https://lichess.org/${game.id}) | ${result}`,
+        });
       });
 
       // Send the embeds
