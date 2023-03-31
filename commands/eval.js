@@ -84,8 +84,6 @@ module.exports = {
             }
           });
 
-          console.log(lines);
-
           const evalEmbed = new EmbedBuilder()
             .setColor(0xdbc300)
             .setTitle(`Cloud Evaluation Depth: ${apiResponse.depth}`)
