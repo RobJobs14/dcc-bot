@@ -82,9 +82,9 @@ module.exports = {
 
         openingEmbed.addFields(
           {
-            name: `${move.san}`,
-            value: `${whiteWinRate}% / ${drawRate}% / ${blackWinRate}%`,
-            inline: true,
+            name: "\u200B",
+            value: `${move.san}: ${whiteWinRate}% / ${drawRate}% / ${blackWinRate}%`,
+            inline: false,
           },
           { name: "\u200B", value: `${totalGames} games`, inline: true }
         );
