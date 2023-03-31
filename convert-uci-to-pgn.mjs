@@ -20,7 +20,7 @@ export async function convertUCIToPGN(fen, uciMoves) {
         chess.move(move);
       }
     }
-    const history = chess.history(pgnMove);
+    const history = chess.history();
     console.log(history);
     let pgnMove = chess
       .pgn({ newline_char: "\n" })
