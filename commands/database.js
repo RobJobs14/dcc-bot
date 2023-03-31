@@ -71,7 +71,7 @@ module.exports = {
         .setColor(0xdbc300)
         .setTitle("Masters Database")
         .setDescription(
-          `${apiResponse.opening.eco}: ${apiResponse.opening.name}`
+          `${apiResponse.opening.eco} ${apiResponse.opening.name}`
         );
 
       apiResponse.moves.forEach((move) => {
@@ -82,7 +82,7 @@ module.exports = {
 
         openingEmbed.addFields({
           name: "\u200B",
-          value: `${move.san} ${totalGames} games ${whiteWinRate}% / ${drawRate}% / ${blackWinRate}%`,
+          value: `${move.san}: ${totalGames} games ${whiteWinRate}% / ${drawRate}% / ${blackWinRate}%`,
         });
       });
 
@@ -94,7 +94,7 @@ module.exports = {
 
       openingEmbed.addFields({
         name: "\u200B",
-        value: `Σ ${totalGames} games ${whiteWinRate}% / ${drawRate}% / ${blackWinRate}%`,
+        value: `Σ: ${totalGames} games ${whiteWinRate}% / ${drawRate}% / ${blackWinRate}%`,
       });
 
       const topGamesEmbed = new EmbedBuilder()
@@ -110,8 +110,8 @@ module.exports = {
         else result = "1/2-1/2";
 
         topGamesEmbed.addFields({
-          name: game.uci,
-          value: `[${whitePlayer} - ${blackPlayer}](https://lichess.org/${game.id}) ${result}`,
+          name: "\u200B",
+          value: `${game.uci} [${whitePlayer} - ${blackPlayer}](https://lichess.org/${game.id}) *${game.month}* ${result}`,
         });
       });
 
