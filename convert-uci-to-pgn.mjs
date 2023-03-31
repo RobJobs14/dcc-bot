@@ -1,5 +1,3 @@
-import { Chess } from "chess.js";
-
 export async function convertUCIToPGN(fen, uciMoves) {
   const pgnMoves = [];
 
@@ -38,6 +36,7 @@ export async function convertUCIToPGN(fen, uciMoves) {
     }
     pgnMove = pgnMove.replace(/(\.\s)\.\.\.\s/g, "... ");
     pgnMoves.push(pgnMove.trim());
-    return pgnMoves;
   }
+
+  return pgnMoves;
 }
