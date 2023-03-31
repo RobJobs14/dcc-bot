@@ -111,7 +111,7 @@ module.exports = {
 
         topGamesEmbed.addFields({
           name: "\u200B",
-          value: `${game.uci} [${whitePlayer} - ${blackPlayer}](https://lichess.org/${game.id}) *${game.month}* ${result}`,
+          value: `${game.uci} [${whitePlayer} - ${blackPlayer}](https://lichess.org/${game.id}) *${game.month}* · ${result}`,
         });
       });
 
