@@ -65,6 +65,8 @@ module.exports = {
           console.error(err);
           return {};
         });
+      console.log(apiResponse);
+
       const openingEmbed = new EmbedBuilder()
         .setColor(0xdbc300)
         .setTitle(`${apiResponse.opening.eco}: ${apiResponse.opening.name}`)
