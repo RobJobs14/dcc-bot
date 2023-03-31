@@ -80,13 +80,10 @@ module.exports = {
         const drawRate = ((move.draws / totalGames) * 100).toFixed(1);
         const blackWinRate = ((move.black / totalGames) * 100).toFixed(1);
 
-        openingEmbed.addFields(
-          {
-            name: "\u200B",
-            value: `${move.san} ${whiteWinRate}% / ${drawRate}% / ${blackWinRate}%`,
-          },
-          { name: "\u200B", value: `${totalGames} games` }
-        );
+        openingEmbed.addFields({
+          name: "\u200B",
+          value: `${move.san} ${totalGames} games ${whiteWinRate}% / ${drawRate}% / ${blackWinRate}%`,
+        });
       });
 
       const totalGames =
@@ -95,13 +92,10 @@ module.exports = {
       const drawRate = ((apiResponse.draws / totalGames) * 100).toFixed(1);
       const blackWinRate = ((apiResponse.black / totalGames) * 100).toFixed(1);
 
-      openingEmbed.addFields(
-        {
-          name: "\u200B",
-          value: `Σ ${whiteWinRate}% / ${drawRate}% / ${blackWinRate}%`,
-        },
-        { name: "\u200B", value: `${totalGames} games` }
-      );
+      openingEmbed.addFields({
+        name: "\u200B",
+        value: `Σ ${totalGames} games ${whiteWinRate}% / ${drawRate}% / ${blackWinRate}%`,
+      });
 
       const topGamesEmbed = new EmbedBuilder()
         .setColor(0xdbc300)
