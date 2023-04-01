@@ -83,6 +83,7 @@ module.exports = {
           const pgnMoves = await Promise.all(
             apiResponse.moves.map(async (move) => {
               const pgnMove = await convertUCIToPGN(fen, move.san);
+              console.log(pgnMove);
               return pgnMove;
             })
           );
