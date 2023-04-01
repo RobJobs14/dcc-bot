@@ -138,7 +138,7 @@ module.exports = {
 
           // Convert UCI moves to PGN format
           const { convertUCIToPGN } = await import("../convert-uci-to-pgn.mjs");
-          const pgnMoves = convertUCIToPGN(fen, game.uci);
+          const pgnMoves = await convertUCIToPGN(fen, game.uci);
 
           topGamesEmbed.addFields({
             name: "\u200B",
