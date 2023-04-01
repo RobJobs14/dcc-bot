@@ -78,6 +78,8 @@ module.exports = {
           return {};
         });
 
+      let mastersEmbed;
+
       if (type === "opening") {
         const mastersEmbed = new EmbedBuilder()
           .setColor(0xdbc300)
