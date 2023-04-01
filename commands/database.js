@@ -128,7 +128,7 @@ module.exports = {
           .setColor(0xdbc300)
           .setTitle("Top Games");
 
-        apiResponse.topGames.forEach((game) => {
+        apiResponse.topGames.forEach(async (game) => {
           const whitePlayer = `${game.white.name}`;
           const blackPlayer = `${game.black.name}`;
           let result;
@@ -137,6 +137,7 @@ module.exports = {
           else result = "1/2-1/2";
 
           // Convert UCI moves to PGN format
+          const { convertUCIToPGN } = await import("../convert-uci-to-pgn.mjs");
           const pgnMoves = convertUCIToPGN(fen, game.uci);
 
           topGamesEmbed.addFields({
