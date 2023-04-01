@@ -8,7 +8,7 @@ module.exports = {
       subcommand
         .setName("masters")
         .setDescription("Search the masters database")
-        .addStringOption((option) =>
+        .addStringOption(option =>
           option
             .setName("type")
             .setRequired(true)
