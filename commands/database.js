@@ -33,6 +33,16 @@ module.exports = {
         .setDescription("Search the lichess database")
         .addStringOption((option) =>
           option
+            .setName("type")
+            .setDescription("The database type")
+            .setRequired(true)
+            .addChoices(
+              { name: "opening", value: "opening" },
+              { name: "game", value: "game" }
+            )
+        )
+        .addStringOption((option) =>
+          option
             .setName("fen")
             .setDescription("The FEN string to search or the starting position")
         )
@@ -70,7 +80,6 @@ module.exports = {
       let url = `https://explorer.lichess.ovh/masters`;
       if (fen) url += `?fen=${fen}`;
       if (pgn) url += `${fen ? "&" : "?"}pgn=${pgn}`;
-      url += `${fen || pgn ? "&" : "?"}moves=10`;
       const apiResponse = await fetch(url)
         .then((res) => res.json())
         .catch((err) => {
@@ -127,9 +136,16 @@ module.exports = {
           else if (game.winner === "black") result = "0-1";
           else result = "1/2-1/2";
 
+          // Convert UCI moves to PGN format
+          const pgnMoves = convertUCIToPGN(fen, game.uci);
+
           topGamesEmbed.addFields({
             name: "\u200B",
-            value: `${game.uci} [${whitePlayer} - ${blackPlayer}](https://lichess.org/${game.id}) *${game.month}* · ${result}`,
+            value: `${pgnMoves.join(
+              " "
+            )} [${whitePlayer} - ${blackPlayer}](https://lichess.org/${
+              game.id
+            }) *${game.month}* · ${result}`,
           });
         });
         interaction.reply({ embeds: [topGamesEmbed] });
