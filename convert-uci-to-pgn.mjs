@@ -14,12 +14,13 @@ export async function convertUCIToPGN(fen, uciMoves) {
     const chess = new Chess(fen);
     let uciMoveArray;
     if (singleMove) {
-      // Split the UCI move string into individual moves using a regular expression
-      uciMoveArray = uciMoves[i].match(/.{1,4}/g);
+      // Assign the UCI move string to uciMoveArray without splitting it
+      uciMoveArray = [uciMoves[i]];
     } else {
       // Split the UCI move string on spaces
       uciMoveArray = uciMoves[i].split(" ");
     }
+
     for (let j = 0; j < uciMoveArray.length; j++) {
       const move = uciMoveArray[j];
       if (move === "e1h1") {
