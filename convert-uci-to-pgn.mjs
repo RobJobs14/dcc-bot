@@ -1,6 +1,9 @@
 import { Chess } from "chess.js";
 
 export async function convertUCIToPGN(fen, uciMoves) {
+  if (!Array.isArray(uciMoves)) {
+    uciMoves = [uciMoves];
+  }
   const pgnMoves = [];
 
   for (let i = 0; i < uciMoves.length; i++) {
