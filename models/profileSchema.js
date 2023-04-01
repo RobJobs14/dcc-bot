@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+mongoose.set("strictQuery", true);
 
 const profileSchema = new mongoose.Schema({
   userId: { type: String, require: true, unique: true },
