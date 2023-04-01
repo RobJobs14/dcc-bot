@@ -63,6 +63,7 @@ module.exports = {
     const subcommand = interaction.options.getSubcommand();
 
     if (subcommand === "masters") {
+      const type = interaction.options.getString("type");
       const fen = interaction.options.getString("fen");
       const pgn = interaction.options.getString("pgn");
       let url = `https://explorer.lichess.ovh/masters`;
@@ -75,8 +76,6 @@ module.exports = {
           console.error(err);
           return {};
         });
-
-      const type = interaction.options.getString("type");
 
       if (type === "opening") {
         const mastersEmbed = new EmbedBuilder()
