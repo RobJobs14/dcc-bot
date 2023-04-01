@@ -99,7 +99,7 @@ module.exports = {
 
       const topGamesEmbed = new EmbedBuilder()
         .setColor(0xdbc300)
-        .setTitle("Master Games");
+        .setTitle("Top Games");
 
       apiResponse.topGames.forEach((game) => {
         const whitePlayer = `${game.white.name}`;
