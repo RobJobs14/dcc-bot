@@ -1,14 +1,25 @@
 import { Chess } from "chess.js";
 
 export async function convertUCIToPGN(fen, uciMoves) {
+  // Check if uciMoves is a single UCI move string or an array of UCI move strings
+  let singleMove = false;
   if (!Array.isArray(uciMoves)) {
+    singleMove = true;
     uciMoves = [uciMoves];
   }
+
   const pgnMoves = [];
 
   for (let i = 0; i < uciMoves.length; i++) {
     const chess = new Chess(fen);
-    const uciMoveArray = uciMoves[i].split(" ");
+    let uciMoveArray;
+    if (singleMove) {
+      // Split the UCI move string into individual moves using a regular expression
+      uciMoveArray = uciMoves[i].match(/.{1,4}/g);
+    } else {
+      // Split the UCI move string on spaces
+      uciMoveArray = uciMoves[i].split(" ");
+    }
     for (let j = 0; j < uciMoveArray.length; j++) {
       const move = uciMoveArray[j];
       if (move === "e1h1") {
