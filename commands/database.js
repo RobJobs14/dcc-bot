@@ -64,7 +64,6 @@ module.exports = {
     const subcommand = interaction.options.getSubcommand();
 
     if (subcommand === "masters") {
-      const type = interaction.options.getString("type");
       const fen = interaction.options.getString("fen");
       const pgn = interaction.options.getString("pgn");
       let url = `https://explorer.lichess.ovh/masters`;
@@ -78,64 +77,65 @@ module.exports = {
           return {};
         });
 
-      let mastersEmbed;
-
-      if (type === "opening") {
-        const mastersEmbed = new EmbedBuilder()
-          .setColor(0xdbc300)
-          .setTitle("Masters Database")
-          .setDescription(
-            `${apiResponse.opening.eco} ${apiResponse.opening.name}`
-          );
-
-        apiResponse.moves.forEach((move) => {
-          const totalGames = move.white + move.draws + move.black;
-          const whiteWinRate = ((move.white / totalGames) * 100).toFixed(1);
-          const drawRate = ((move.draws / totalGames) * 100).toFixed(1);
-          const blackWinRate = ((move.black / totalGames) * 100).toFixed(1);
-
-          mastersEmbed.addFields({
-            name: "\u200B",
-            value: `${move.san}: ${totalGames} games ${whiteWinRate}% / ${drawRate}% / ${blackWinRate}%`,
-          });
-        });
-
-        const totalGames =
-          apiResponse.white + apiResponse.draws + apiResponse.black;
-        const whiteWinRate = ((apiResponse.white / totalGames) * 100).toFixed(
-          1
-        );
-        const drawRate = ((apiResponse.draws / totalGames) * 100).toFixed(1);
-        const blackWinRate = ((apiResponse.black / totalGames) * 100).toFixed(
-          1
+      const openingEmbed = new EmbedBuilder()
+        .setColor(0xdbc300)
+        .setTitle("Masters Database")
+        .setDescription(
+          `${apiResponse.opening.eco} ${apiResponse.opening.name}`
         );
 
-        mastersEmbed.addFields({
+      apiResponse.moves.forEach((move) => {
+        const totalGames = move.white + move.draws + move.black;
+        const whiteWinRate = ((move.white / totalGames) * 100).toFixed(1);
+        const drawRate = ((move.draws / totalGames) * 100).toFixed(1);
+        const blackWinRate = ((move.black / totalGames) * 100).toFixed(1);
+
+        openingEmbed.addFields({
           name: "\u200B",
-          value: `Σ: ${totalGames} games ${whiteWinRate}% / ${drawRate}% / ${blackWinRate}%`,
+          value: `${move.san}: ${totalGames} games ${whiteWinRate}% / ${drawRate}% / ${blackWinRate}%`,
         });
-      } else if (type === "game") {
-        const mastersEmbed = new EmbedBuilder()
-          .setColor(0xdbc300)
-          .setTitle("Top Games");
+      });
 
-        apiResponse.topGames.forEach((game) => {
-          const whitePlayer = `${game.white.name}`;
-          const blackPlayer = `${game.black.name}`;
-          let result;
-          if (game.winner === "white") result = "1-0";
-          else if (game.winner === "black") result = "0-1";
-          else result = "1/2-1/2";
+      const totalGames =
+        apiResponse.white + apiResponse.draws + apiResponse.black;
+      const whiteWinRate = ((apiResponse.white / totalGames) * 100).toFixed(1);
+      const drawRate = ((apiResponse.draws / totalGames) * 100).toFixed(1);
+      const blackWinRate = ((apiResponse.black / totalGames) * 100).toFixed(1);
 
-          mastersEmbed.addFields({
-            name: "\u200B",
-            value: `${game.uci} [${whitePlayer} - ${blackPlayer}](https://lichess.org/${game.id}) *${game.month}* · ${result}`,
-          });
+      openingEmbed.addFields({
+        name: "\u200B",
+        value: `Σ: ${totalGames} games ${whiteWinRate}% / ${drawRate}% / ${blackWinRate}%`,
+      });
+
+      const topGamesEmbed = new EmbedBuilder()
+        .setColor(0xdbc300)
+        .setTitle("Top Games");
+
+      apiResponse.topGames.forEach((game) => {
+        const whitePlayer = `${game.white.name}`;
+        const blackPlayer = `${game.black.name}`;
+        let result;
+        if (game.winner === "white") result = "1-0";
+        else if (game.winner === "black") result = "0-1";
+        else result = "1/2-1/2";
+
+        topGamesEmbed.addFields({
+          name: "\u200B",
+          value: `${game.uci} [${whitePlayer} - ${blackPlayer}](https://lichess.org/${game.id}) *${game.month}* · ${result}`,
         });
-      }
+      });
 
       // Send the embeds
-      interaction.reply({ embeds: [mastersEmbed] });
+      const type = interaction.options.getString("type");
+      let embed;
+
+      if (type === "opening") {
+        embed = openingEmbed;
+      } else if (type === "game") {
+        embed = topGamesEmbed;
+      }
+
+      interaction.reply({ embeds: [embed] });
     } else if (subcommand === "lichess") {
       const fen = interaction.options.getString("fen");
       const pgn = interaction.options.getString("pgn");
