@@ -17,7 +17,7 @@ module.exports = {
     .addSubcommand((subcommand) =>
       subcommand
         .setName("gif")
-        .setDescription("Display the GIF of a PGN")
+        .setDescription("Display a PGN as a GIF")
         .addStringOption((option) =>
           option
             .setName("pgn")
@@ -31,7 +31,7 @@ module.exports = {
     .addSubcommand((subcommand) =>
       subcommand
         .setName("view")
-        .setDescription("Display a PGN")
+        .setDescription("Display a PGN on a navigable board")
         .addStringOption((option) =>
           option
             .setName("pgn")
@@ -45,7 +45,7 @@ module.exports = {
     .addSubcommand((subcommand) =>
       subcommand
         .setName("game")
-        .setDescription("Display the PGN of an online game (coming soon)")
+        .setDescription("View an online game on a navigable board (coming soon)")
         .addStringOption((option) =>
           option
             .setName("url")
