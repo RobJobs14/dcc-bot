@@ -7,7 +7,7 @@ module.exports = {
     .addSubcommand((subcommand) =>
       subcommand
         .setName("masters")
-        .setDescription("Search the masters database")
+        .setDescription("Search the masters database (coming soon)")
         .addStringOption((option) =>
           option
             .setName("type")
@@ -30,7 +30,7 @@ module.exports = {
     .addSubcommand((subcommand) =>
       subcommand
         .setName("lichess")
-        .setDescription("Search the lichess database")
+        .setDescription("Search the lichess database (coming soon)")
         .addStringOption((option) =>
           option
             .setName("type")
@@ -53,7 +53,7 @@ module.exports = {
     .addSubcommand((subcommand) =>
       subcommand
         .setName("player")
-        .setDescription("Search a player's database")
+        .setDescription("Search a player's database (coming soon)")
         .addStringOption((option) =>
           option
             .setName("username")

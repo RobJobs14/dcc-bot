@@ -52,6 +52,17 @@ module.exports = {
             .setDescription("The chess.com or lichess link")
             .setRequired(true)
         )
+    )
+    .addSubcommand((subcommand) =>
+      subcommand
+        .setName("get")
+        .setDescription("Get the PGN of an online game (coming soon)")
+        .addStringOption((option) =>
+          option
+            .setName("url")
+            .setDescription("The chess.com or lichess link")
+            .setRequired(true)
+        )
     ),
 
   async execute(interaction) {
