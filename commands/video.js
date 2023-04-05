@@ -1,7 +1,5 @@
 const { decode } = require("html-entities");
 const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
-const formatColor = require("../lib/format-color");
-const { escape } = require("querystring");
 const { formatError, formatPages } = require("../lib/format-pages");
 
 function video(author, text, interaction) {
@@ -9,11 +7,15 @@ function video(author, text, interaction) {
   let status, statusText;
   return fetch(url, { params: { q: text } })
     .then((response) => {
+      console.log("response:", response);
       status = response.status;
       statusText = response.statusText;
       return response.text();
     })
-    .then((text) => setVideos(text, interaction))
+    .then((text) => {
+      console.log("text:", text);
+      setVideos(text, interaction);
+    })
     .then((embeds) =>
       formatPages("Video", embeds, interaction, "No videos found.")
     )
@@ -43,9 +45,8 @@ function getVideos(document) {
 
 function formatVideo(uri, duration, name, author, target, tags) {
   const seconds = duration.split(/:/).reduce((acc, time) => 60 * acc + +time);
-  const score = Math.min(Math.max(Math.floor(2 * Math.sqrt(seconds)), 0), 255);
   return new EmbedBuilder()
-    .setColor(formatColor(score, 0, 255 - score))
+    .setColor(0xdbc300)
     .setAuthor({ name: author, iconURL: null })
     .setTitle(`${decode(name)} (${duration})`)
     .setURL(`https://youtu.be/${uri}`)
@@ -67,9 +68,9 @@ function title(str) {
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("video")
-    .setDescription("Search videos for a keyword")
+    .setDescription("Search chess videos")
     .addStringOption((option) =>
-      option.setName("text").setDescription("Search keywords")
+      option.setName("text").setDescription("keywords")
     ),
   async execute(interaction) {
     await interaction.deferReply();
