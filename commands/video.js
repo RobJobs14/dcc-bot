@@ -88,15 +88,13 @@ module.exports = {
       video(msg.author, text).then((message) => msg.channel.send(message));
     }
 
-    async function interact(interaction) {
-      await interaction.deferReply();
-      const result = await video(
-        interaction.user,
-        interaction.options.getString("text"),
-        interaction
-      );
-      await interaction.editReply(result);
-    }
+    await interaction.deferReply();
+    const result = await video(
+      interaction.user,
+      interaction.options.getString("text"),
+      interaction
+    );
+    await interaction.editReply(result);
   },
   process,
   interact,
