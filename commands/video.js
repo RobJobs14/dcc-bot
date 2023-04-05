@@ -7,13 +7,11 @@ function video(author, text, interaction) {
   let status, statusText;
   return fetch(url, { params: { q: text } })
     .then((response) => {
-      console.log("response:", response);
       status = response.status;
       statusText = response.statusText;
       return response.text();
     })
     .then((text) => {
-      console.log("text:", text);
       setVideos(text, interaction);
     })
     .then((embeds) =>
