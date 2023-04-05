@@ -97,5 +97,4 @@ module.exports = {
     await interaction.editReply(result);
   },
   process,
-  interact,
 };
