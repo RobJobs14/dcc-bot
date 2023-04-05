@@ -204,7 +204,7 @@ module.exports = {
             )
             .setLabel(`Challenge ${interaction.user.username} on Lichess!`)
             .setStyle(ButtonStyle.Link)
-            .setEmoji(`1090274244014907422`)
+            .setEmoji(`1090279571846340619`)
         );
       } else {
         buttonRow2.addComponents(
@@ -212,7 +212,7 @@ module.exports = {
             .setCustomId(`lichessDisabled`)
             .setLabel(`Challenge ${interaction.user.username} on Lichess!`)
             .setStyle(ButtonStyle.Secondary)
-            .setEmoji(`1090274244014907422`)
+            .setEmoji(`1090279571846340619`)
             .setDisabled(true)
         );
       }
