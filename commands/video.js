@@ -2,21 +2,21 @@ const { decode } = require("html-entities");
 const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 const { formatError, formatPages } = require("../lib/format-pages");
 
-function video(author, text, interaction) {
-  const url = `https://lichess.org/video?q=${encodeURI(text)}`;
+function video(author, query, interaction) {
+  const url = `https://lichess.org/video?q=${encodeURI(query)}`;
   let status, statusText;
-  return fetch(url, { params: { q: text } })
+  return fetch(url, { params: { q: query } })
     .then((response) => {
       status = response.status;
       statusText = response.statusText;
       return response.text();
     })
-    .then((text) => setVideos(text, interaction))
+    .then((query) => setVideos(query, interaction))
     .then((embeds) =>
       formatPages("Video", embeds, interaction, "No videos found.")
     )
     .catch((error) => {
-      console.log(`Error in video(${author.username}, ${text}): ${error}`);
+      console.log(`Error in video(${author.username}, ${query}): ${error}`);
       return formatError(
         status,
         statusText,
@@ -66,13 +66,13 @@ module.exports = {
     .setName("video")
     .setDescription("Search chess videos")
     .addStringOption((option) =>
-      option.setName("text").setDescription("keywords")
+      option.setName("query").setDescription("The search keywords")
     ),
   async execute(interaction) {
     await interaction.deferReply();
     const result = await video(
       interaction.user,
-      interaction.options.getString("text"),
+      interaction.options.getString("query"),
       interaction
     );
     await interaction.editReply(result);
