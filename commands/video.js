@@ -1,5 +1,5 @@
 const { decode } = require("html-entities");
-const { EmbedBuilder } = require("discord.js");
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 const formatColor = require("../lib/format-color");
 const { escape } = require("querystring");
 const { formatError, formatPages } = require("../lib/format-pages");
@@ -73,4 +73,13 @@ async function interact(interaction) {
   video(interaction.user, interaction.options.getString("text"), interaction);
 }
 
-module.exports = { process, interact };
+module.exports = {
+  process,
+  interact,
+  data: new SlashCommandBuilder()
+    .setName("video")
+    .setDescription("Search videos for a keyword")
+    .addStringOption((option) =>
+      option.setName("text").setDescription("Search keywords")
+    ),
+};
