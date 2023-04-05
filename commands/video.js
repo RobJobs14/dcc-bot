@@ -4,6 +4,13 @@ const formatColor = require("../lib/format-color");
 const { escape } = require("querystring");
 const { formatError, formatPages } = require("../lib/format-pages");
 
+const commandData = new SlashCommandBuilder()
+  .setName("video")
+  .setDescription("Search videos for a keyword")
+  .addStringOption((option) =>
+    option.setName("text").setDescription("Search keywords")
+  );
+
 function video(author, text, interaction) {
   const url = `https://lichess.org/video?q=${escape(text)}`;
   let status, statusText;
@@ -76,10 +83,5 @@ async function interact(interaction) {
 module.exports = {
   process,
   interact,
-  data: new SlashCommandBuilder()
-    .setName("video")
-    .setDescription("Search videos for a keyword")
-    .addStringOption((option) =>
-      option.setName("text").setDescription("Search keywords")
-    ),
+  data: commandData,
 };
