@@ -11,6 +11,12 @@ module.exports = {
     .addStringOption((option) =>
       option.setName("text").setDescription("Search keywords")
     ),
+  async execute(interaction) {
+    const text = interaction.options.getString("text");
+    const result = await video(interaction.user, text, interaction);
+
+    await interaction.reply(result);
+  },
   process,
   interact,
 };
