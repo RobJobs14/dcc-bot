@@ -121,6 +121,7 @@ module.exports = {
             `Challenge ${interaction.targetUser.username} on Chess.com!`
           )
           .setStyle(ButtonStyle.Link)
+          .setEmoji(`1090274242886635531`)
       );
     } else {
       buttonRow1.addComponents(
@@ -130,6 +131,7 @@ module.exports = {
             `Challenge ${interaction.targetUser.username} on Chess.com!`
           )
           .setStyle(ButtonStyle.Secondary)
+          .setEmoji(`1090274242886635531`)
           .setDisabled(true)
       );
     }
@@ -141,6 +143,7 @@ module.exports = {
           .setURL(`https://lichess.org/?user=${profile.lichessUsername}#friend`)
           .setLabel(`Challenge ${interaction.targetUser.username} on Lichess!`)
           .setStyle(ButtonStyle.Link)
+          .setEmoji(`1090274244014907422`)
       );
     } else {
       buttonRow2.addComponents(
@@ -148,6 +151,7 @@ module.exports = {
           .setCustomId(`lichessDisabled`)
           .setLabel(`Challenge ${interaction.targetUser.username} on Lichess!`)
           .setStyle(ButtonStyle.Secondary)
+          .setEmoji(`1090274244014907422`)
           .setDisabled(true)
       );
     }
