@@ -11,9 +11,7 @@ function video(author, text, interaction) {
       statusText = response.statusText;
       return response.text();
     })
-    .then((text) => {
-      setVideos(text, interaction);
-    })
+    .then((text) => setVideos(text, interaction))
     .then((embeds) =>
       formatPages("Video", embeds, interaction, "No videos found.")
     )
