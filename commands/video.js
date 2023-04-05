@@ -87,5 +87,10 @@ function process(bot, msg, text) {
 
 async function interact(interaction) {
   await interaction.deferReply();
-  video(interaction.user, interaction.options.getString("text"), interaction);
+  const result = await video(
+    interaction.user,
+    interaction.options.getString("text"),
+    interaction
+  );
+  await interaction.editReply(result);
 }
