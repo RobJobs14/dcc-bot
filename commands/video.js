@@ -5,7 +5,7 @@ const { escape } = require("querystring");
 const { formatError, formatPages } = require("../lib/format-pages");
 
 function video(author, text, interaction) {
-  const url = `https://lichess.org/video?q=${escape(text)}`;
+  const url = `https://lichess.org/video?q=${encodeURI(text)}`;
   let status, statusText;
   return fetch(url, { params: { q: text } })
     .then((response) => {
