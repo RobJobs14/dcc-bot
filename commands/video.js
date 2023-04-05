@@ -5,14 +5,14 @@ const { escape } = require("querystring");
 const { formatError, formatPages } = require("../lib/format-pages");
 
 module.exports = {
-  process,
-  interact,
   data: new SlashCommandBuilder()
     .setName("video")
     .setDescription("Search videos for a keyword")
     .addStringOption((option) =>
       option.setName("text").setDescription("Search keywords")
     ),
+  process,
+  interact,
 };
 
 function video(author, text, interaction) {
