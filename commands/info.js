@@ -32,7 +32,7 @@ module.exports = {
       });
     } else if (subcommand === "invite") {
       await interaction.reply({
-        content: "https://discord.gg/FQvunv4PAX",
+        content: "https://discord.gg/DHQFNv2jAV",
         ephemeral: true,
       });
     } else if (subcommand === "notation") {
